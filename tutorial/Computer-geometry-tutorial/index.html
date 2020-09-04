@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pyai.top","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="计算几何基础单位向量 $(Unit\ vector)$​    对于任意向量 $\vec a$ ，不论方向如何，若其大小为单位长度，则称其为 $\vec a$ 方向上的单位向量 $(Unit\ vector)$ 。单位向量通常被记为 $\vec u$ 。特殊地，三维笛卡尔坐标系上的三个基向量 $\vec i&#x3D;(1,0,0),\vec j&#x3D;(0,1,0),\vec k&#x3D;(0,0,1)$ 都是单位向量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算几何入门">
+<meta property="og:url" content="https://pyai.top/tutorial/Computer-geometry-tutorial/index.html">
+<meta property="og:site_name" content="pyai&#39;s blog">
+<meta property="og:description" content="计算几何基础单位向量 $(Unit\ vector)$​    对于任意向量 $\vec a$ ，不论方向如何，若其大小为单位长度，则称其为 $\vec a$ 方向上的单位向量 $(Unit\ vector)$ 。单位向量通常被记为 $\vec u$ 。特殊地，三维笛卡尔坐标系上的三个基向量 $\vec i&#x3D;(1,0,0),\vec j&#x3D;(0,1,0),\vec k&#x3D;(0,0,1)$ 都是单位向量">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/Vector_addition.png">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/Vector_subtraction.png">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/Right_hand_rule_cross_product.png">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/Cross_product.gif">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/vec-rotate.jpg">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/prove.jpg">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/projection.jpg">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/convexhull.jpg">
+<meta property="og:image" content="https://pyai.top/images/acm/2019/float-table.jpg">
+<meta property="article:published_time" content="2019-08-11T09:22:13.000Z">
+<meta property="article:modified_time" content="2020-09-04T04:15:45.897Z">
+<meta property="article:author" content="pyai">
+<meta property="article:tag" content="计算几何">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pyai.top/images/acm/2019/Vector_addition.png">
+
+
+<link rel="canonical" href="https://pyai.top/tutorial/Computer-geometry-tutorial/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>计算几何入门 | pyai's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">pyai's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-腾讯兔小巢">
+
+    <a href="https://support.qq.com/products/109158" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>腾讯兔小巢</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">计算几何基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E5%90%91%E9%87%8F-Unit-vector"><span class="nav-number">1.1.</span> <span class="nav-text">单位向量 $(Unit\ vector)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9B%B8%E5%85%B3%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.</span> <span class="nav-text">向量相关的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B8%8E%E5%90%91%E9%87%8F%E7%9A%84%E5%8A%A0%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">向量与向量的加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B8%8E%E5%90%91%E9%87%8F%E7%9A%84%E5%87%8F%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">向量与向量的减法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B8%8E%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">向量与数的乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B8%8E%E6%95%B0%E7%9A%84%E9%99%A4%E6%B3%95"><span class="nav-number">1.2.4.</span> <span class="nav-text">向量与数的除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dot-product"><span class="nav-number">1.2.5.</span> <span class="nav-text">$Dot\ product$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cross-product"><span class="nav-number">1.2.6.</span> <span class="nav-text">$Cross\ product$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-number">1.2.7.</span> <span class="nav-text">向量的旋转</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%981"><span class="nav-number">2.1.</span> <span class="nav-text">例题1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%982"><span class="nav-number">2.2.</span> <span class="nav-text">例题2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%87%A0%E4%BD%95%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E9%83%A8%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">二维几何基础算法部件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%9C%A8%E7%BA%BF%E6%AE%B5%E4%B9%8B%E9%97%B4"><span class="nav-number">3.1.</span> <span class="nav-text">点在线段之间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E4%B8%A4%E7%9B%B4%E7%BA%BF%E4%BA%A4%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text">求两直线交点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%88%B0%E7%9B%B4%E7%BA%BF%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="nav-number">3.3.</span> <span class="nav-text">点到直线的距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%88%B0%E7%BA%BF%E6%AE%B5%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="nav-number">3.4.</span> <span class="nav-text">点到线段的距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%9C%A8%E7%9B%B4%E7%BA%BF%E4%B8%8A%E7%9A%84%E6%8A%95%E5%BD%B1"><span class="nav-number">3.5.</span> <span class="nav-text">点在直线上的投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4%E5%88%A4%E5%AE%9A"><span class="nav-number">3.6.</span> <span class="nav-text">线段相交判定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%86%85%E5%88%A4%E5%AE%9A"><span class="nav-number">3.7.</span> <span class="nav-text">点在多边形内判定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E5%9C%86%E6%9C%89%E5%85%B3%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97"><span class="nav-number">3.8.</span> <span class="nav-text">与圆有关的相关计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E5%8C%85"><span class="nav-number">3.9.</span> <span class="nav-text">凸包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E5%B9%B3%E9%9D%A2%E4%BA%A4"><span class="nav-number">3.10.</span> <span class="nav-text">半平面交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E9%9D%A2%E5%8C%BA%E5%9F%9F"><span class="nav-number">3.11.</span> <span class="nav-text">平面区域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7%E5%92%8C%E5%B0%8F%E9%99%B7%E9%98%B1"><span class="nav-number">4.</span> <span class="nav-text">小技巧和小陷阱</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pyai</p>
+  <div class="site-description" itemprop="description">记录生活的点点滴滴!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://t.me/wopyai" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;wopyai" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://m.do.co/c/6d9bcba26196" title="https:&#x2F;&#x2F;m.do.co&#x2F;c&#x2F;6d9bcba26196" rel="noopener" target="_blank">DO服务器</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zhangzef.com/" title="https:&#x2F;&#x2F;zhangzef.com&#x2F;" rel="noopener" target="_blank">张泽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cnguu.cn/" title="https:&#x2F;&#x2F;blog.cnguu.cn&#x2F;" rel="noopener" target="_blank">vuepress-theme-yur作者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://is.boxmoe.cn/" title="https:&#x2F;&#x2F;is.boxmoe.cn&#x2F;" rel="noopener" target="_blank">霓红的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cugxuan.cn/" title="https:&#x2F;&#x2F;blog.cugxuan.cn&#x2F;" rel="noopener" target="_blank">泫</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/tutorial/Computer-geometry-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算几何入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-08-11 17:22:13" itemprop="dateCreated datePublished" datetime="2019-08-11T17:22:13+08:00">2019-08-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:45" itemprop="dateModified" datetime="2020-09-04T12:15:45+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">ACM-计算几何</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/tutorial/Computer-geometry-tutorial/" class="post-meta-item leancloud_visitors" data-flag-title="计算几何入门" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="计算几何基础"><a href="#计算几何基础" class="headerlink" title="计算几何基础"></a>计算几何基础</h2><h3 id="单位向量-Unit-vector"><a href="#单位向量-Unit-vector" class="headerlink" title="单位向量 $(Unit\ vector)$"></a>单位向量 $(Unit\ vector)$</h3><p>​    对于任意向量 $\vec a$ ，不论方向如何，若其大小为单位长度，则称其为 $\vec a$ 方向上的单位向量 $(Unit\ vector)$ 。单位向量通常被记为 $\vec u$ 。<br>特殊地，三维笛卡尔坐标系上的三个基向量 $\vec i=(1,0,0),\vec j=(0,1,0),\vec k=(0,0,1)$ 都是单位向量。<br>点或向量的结构体如下：</p>
+<a id="more"></a>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sgn返回x经过eps处理的符号，负数返回-1，正数返回1，x的绝对值如果足够小，就返回0。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sgn</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; <span class="keyword">return</span> x &lt; -eps ? <span class="number">-1</span> : x &gt; eps ? <span class="number">1</span> : <span class="number">0</span>; &#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    Point()&#123;&#125;</span><br><span class="line">    Point(<span class="keyword">double</span> x,<span class="keyword">double</span> y):x(x),y(y)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> Point Vector;</span><br></pre></td></tr></table></figure>
+
+<h3 id="向量相关的运算"><a href="#向量相关的运算" class="headerlink" title="向量相关的运算"></a>向量相关的运算</h3><h4 id="向量与向量的加法"><a href="#向量与向量的加法" class="headerlink" title="向量与向量的加法"></a>向量与向量的加法</h4><p>​    向量的加法满足<a target="_blank" href="https://zh.wikipedia.org/wiki/%E5%B9%B3%E8%A1%8C%E5%9B%9B%E9%82%8A%E5%BD%A2%E6%81%86%E7%AD%89%E5%BC%8F" rel="external nofollow noreferrer noopener">平行四边形法则</a>和<a target="_blank" href="https://zh.wikipedia.org/wiki/%E4%B8%89%E8%A7%92%E4%B8%8D%E7%AD%89%E5%BC%8F#%E5%90%91%E9%87%8F" rel="external nofollow noreferrer noopener">三角形法则</a>。具体地，两个向量 $\vec a$ 和 $\vec b$ 相加，得到的是另一个向量。这个向量可以表示为 $\vec a$ 和 $\vec b$ 的起点重合后，以它们为邻边构成的平行四边形的一条对角线（以共同的起点为起点的那一条，见下图左），或者表示为将的 $\vec a$ 终点和 $\vec b$ 的起点重合后，从 $\vec a$ 的起点指向 $\vec b$ 的终点的向量：</p>
+<p><img data-src="/images/acm/2019/Vector_addition.png"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector <span class="keyword">operator</span> + (Vector A,Vector B)&#123;</span><br><span class="line">    <span class="keyword">return</span> Vector(A.x+B.x,A.y+B.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="向量与向量的减法"><a href="#向量与向量的减法" class="headerlink" title="向量与向量的减法"></a>向量与向量的减法</h4><p>​    两个向量 $\vec a$ 和 $\vec b$ 的相减，则可以看成是向量 $\vec a$ 加上一个与 $\vec b$ 大小相等，方向相反的向量。又或者，$\vec a$ 和 $\vec b$ 的相减得到的向量可以表示为 $\vec a$ 和 $\vec b$ 的起点重合后，从 $\vec b$ 的终点指向 $\vec a$ 的终点的向量：</p>
+<p><img data-src="/images/acm/2019/Vector_subtraction.png"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector <span class="keyword">operator</span> - (Point A,Point B)&#123;</span><br><span class="line">    <span class="keyword">return</span> Vector(A.x-B.x,A.y-B.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="向量与数的乘法"><a href="#向量与数的乘法" class="headerlink" title="向量与数的乘法"></a>向量与数的乘法</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector <span class="keyword">operator</span> * (Vector A,<span class="keyword">double</span> p)&#123;</span><br><span class="line">    <span class="keyword">return</span> Vector(A.x*p,A.y*p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="向量与数的除法"><a href="#向量与数的除法" class="headerlink" title="向量与数的除法"></a>向量与数的除法</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector <span class="keyword">operator</span> / (Vector A,<span class="keyword">double</span> p)&#123;</span><br><span class="line">    <span class="keyword">return</span> Vector(A.x/p,A.y/p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Dot-product"><a href="#Dot-product" class="headerlink" title="$Dot\ product$"></a>$Dot\ product$</h4><ul>
+<li>${\vec a}\cdot{\vec b}=|\vec a||\vec b|\cos{\theta}$<ul>
+<li>这里$\ |\vec a|\ $表示$\vec a$的模（长度），$\theta$表示两个向量之间的角度。</li>
+</ul>
+</li>
+<li>运算结果：标量</li>
+<li>用处：<ul>
+<li>判断正交[^1]（点积为零）</li>
+<li>计算两向量的夹角 $cos\beta=\dfrac{ {\vec a}\cdot{\vec b} }{|\vec a||\vec b|}$</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//点积</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Dot</span><span class="params">(Vector A,Vector B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A.x*B.x+A.y*B.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Length</span><span class="params">(Vector A)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sqrt</span>(Dot(A,A));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Angle</span><span class="params">(Vector A,Vector B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">acos</span>(Dot(A,B)/Length(A)/Length(B));<span class="comment">//用连除代替乘法，防止乘法溢出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Cross-product"><a href="#Cross-product" class="headerlink" title="$Cross\ product$"></a>$Cross\ product$</h4><ul>
+<li><p>运算结果：向量</p>
+</li>
+<li><p>用处：计算面积或判断点的位置关系等。</p>
+</li>
+<li><p>使用右手定则确定叉积的方向</p>
+<p><img data-src="/images/acm/2019/Right_hand_rule_cross_product.png"></p>
+</li>
+<li><p>叉积 ${\vec a} \times {\vec b}$（垂直方向、<font color="violet">紫色</font>）随着向量 $\vec a$（<font color="blue">蓝色</font>）和 $\vec b$（<font color="red">红色</font>）的夹角变化。 叉积垂直于两个向量，模长在两者平行时为零、在两者垂直时达到最大值 $|\vec a||\vec b|$。</p>
+<p><img data-src="/images/acm/2019/Cross_product.gif"></p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//叉积</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Cross</span><span class="params">(Vector A,Vector B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (A.x*B.y-A.y*B.x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//三角形面积的二倍的叉乘公式</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Area2</span><span class="params">(Point A,Point B,Point C)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Cross(B-A,C-A);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="向量的旋转"><a href="#向量的旋转" class="headerlink" title="向量的旋转"></a>向量的旋转</h4><img width="50%" data-src="/images/acm/2019/vec-rotate.jpg">
+
+<blockquote>
+<p>将向量 $\vec a=(x,y)$ 绕原点逆时针旋转$\alpha$度。</p>
+</blockquote>
+<p>假设模长$d=\sqrt{x^2+y^2}$<br>那么$\vec a=(x,y)=(d\cos{\beta},d\sin{\beta})$<br>旋转$\alpha$度就是：<br>$$<br>\begin{eqnarray}<br>\vec{\grave a} &amp;=&amp; (d\cos{(\beta+\alpha)},d\sin{(\beta+\alpha)}) \\<br>&amp;=&amp; (d(\cos{\beta}\cdot\cos{\alpha}-\sin{\beta}\cdot\sin{\alpha}),<br>d(\sin{\beta}\cdot\cos{\alpha}+\cos{\beta}\cdot\sin{\alpha})) \\<br>&amp;&amp;将x=d\cos{\beta}, y=d\sin{\beta}代进去\\<br>&amp;=&amp; (x\cos{\alpha}-y\sin{\alpha},x\sin{\alpha}+y\cos{\alpha})<br>\end{eqnarray}<br>$$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将向量p绕原点逆时针旋转a度</span></span><br><span class="line"><span class="function">Point <span class="title">rotate</span><span class="params">(Point p, <span class="keyword">double</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Point(p.x*<span class="built_in">cos</span>(a) - p.y*<span class="built_in">sin</span>(a), p.x*<span class="built_in">sin</span>(a) + p.y*<span class="built_in">cos</span>(a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h3><blockquote>
+<p>给定一个简单多边形，求其面积<br>输入：多边形（定点按照逆时针顺序排列）<br>输出：面积S</p>
+</blockquote>
+<p>化繁为简，多边形一般分解为多个三角形。<br>首先考虑给定一个三角形，如何计算面积？</p>
+<ol>
+<li>在解析几何里，$\triangle ABC$的面积可以通过如下方式求的：<ol>
+<li>获得点坐标</li>
+<li>获得边长$a,b,c$</li>
+<li>海伦公式求得面积$S=\sqrt{s(s-a)(s-b)(s-c)}$，其中$s=\dfrac{a+b+c}{2}$</li>
+</ol>
+</li>
+<li>在计算几何里，我们知道$\triangle ABC$的面积就是$\vec {AB}$和$\vec {AC}$叉积的绝对值的一半。</li>
+</ol>
+<p><mark>显然</mark>，利用叉积来计算面积的精度误差远小于第一种方法。<br>下面函数就可以计算多边形的<mark>有向面积</mark>了。适合凸多边形[^2]和凹多边形。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多边形的有向面积</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">PolygonArea</span><span class="params">(Point* p,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> area=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        area+=Cross(p[i]-p[<span class="number">0</span>],p[i+<span class="number">1</span>]-p[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> area/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h3><p>例题： <a target="_blank" href="https://codeforces.com/contest/498/problem/A" rel="external nofollow noreferrer noopener">https://codeforces.com/contest/498/problem/A</a><br>题意：问你你家到你学校的平面上有很多直线（给出一般式的系数），问你至少穿过多少条直线才能到达学校？<br>代码题解： <a target="_blank" href="https://blog.csdn.net/intmainhhh/article/details/96175992" rel="external nofollow noreferrer noopener">https://blog.csdn.net/intmainhhh/article/details/96175992</a></p>
+<blockquote>
+<p>判断点$A(x_1,y_1)$和$B(x_2,y_2)$是否在直线$f(x,y)=ax+by+c=0$的两侧。</p>
+</blockquote>
+<ul>
+<li>直接将点$A$和$B$带入$f(x,y)$，若$f(x1,y1)\times f(x2,y2) &lt; 0$，则两点位于直线两侧。</li>
+<li>显然，$f(x,y)=0$时说明$(x,y)$在直线上。</li>
+</ul>
+<h2 id="二维几何基础算法部件"><a href="#二维几何基础算法部件" class="headerlink" title="二维几何基础算法部件"></a>二维几何基础算法部件</h2><img data-src="/images/acm/2019/prove.jpg" width="50%">
+
+<h3 id="点在线段之间"><a href="#点在线段之间" class="headerlink" title="点在线段之间"></a>点在线段之间</h3><ol>
+<li>首先需要满足点在线段所在直线</li>
+<li>然后点的 $x$ 在线段端点之间</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PointOnSegment</span><span class="params">(Point p, Point a, Point b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !sgn(Cross(p-a, b-a)) &amp;&amp; sgn(Dot(p-a, p-b)) &lt;= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="求两直线交点"><a href="#求两直线交点" class="headerlink" title="求两直线交点"></a>求两直线交点</h3><p>前提是两直线不平行（叉积为0）<br>用参数方程表示直线：两直线分别为$P+t\vec v$ 和$Q+t\vec w$<br>设向量$u=P-Q$，交点在第一条直线的参数为$t_1$，第二条直线上的参数为$t_2$，两直线连立可以解的：<br>$t_1=\dfrac{Cross(w,u)}{Cross(v,w)}$，$t_2=\dfrac{Cross(v,u)}{Cross(v,w)}$<br>计算$t_1$过程如下，$t_2$同理<br>$$<br>\begin{eqnarray}<br>P+t_1\vec v &amp;=&amp; Q+t_2\vec w \\<br>P-Q &amp;=&amp; \vec u = t_2\vec w-t_1\vec v \\<br>\vec u\times\vec w &amp;=&amp; t_2\vec w\times \vec w-t_1\vec v\times\vec w \\<br>\vec u\times\vec w &amp;=&amp; -t_1\vec v\times\vec w \\<br>t_1 &amp;=&amp; \dfrac{Cross(w,u)}{Cross(v,w)}<br>\end{eqnarray}<br>$$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求两直线交点</span></span><br><span class="line"><span class="comment">//调用前请确保P+tv和Q+tw有唯一交点，当且仅当Cross(v,w)非0</span></span><br><span class="line"><span class="function">Point <span class="title">GetLineIntersection</span><span class="params">(Point P,Vector v,Point Q,Vector w)</span></span>&#123;</span><br><span class="line">    Vector u=P-Q;</span><br><span class="line">    <span class="keyword">double</span> t=Cross(w,u)/Cross(v,w);</span><br><span class="line">    <span class="keyword">return</span> P+v*t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="点到直线的距离"><a href="#点到直线的距离" class="headerlink" title="点到直线的距离"></a>点到直线的距离</h3><blockquote>
+<p>显然叉积求平行四边形面积，除以底得到高，就是点到直线的距离</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//点到直线的距离</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">DistanceToLine</span><span class="params">(Point P,Point A,Point B)</span></span>&#123;</span><br><span class="line">    Vector v1=B-A,v2=P-A;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">fabs</span>(Cross(v1,v2))/Length(v1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="点到线段的距离"><a href="#点到线段的距离" class="headerlink" title="点到线段的距离"></a>点到线段的距离</h3><blockquote>
+<p>显然和点到直线的距离不一样，这个需要判断点到线段所在直线的垂足是否在线段上。<br>自己画个图就明白了。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//点到线段的距离</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">DistanceToSegment</span><span class="params">(Point P,Point A,Point B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(A==B) <span class="keyword">return</span> Length(P-A);</span><br><span class="line">    Vector v1=B-A,v2=P-A,v3=P-B;</span><br><span class="line">    <span class="keyword">if</span>(sgn(Dot(v1,v2))&lt;<span class="number">0</span>) <span class="keyword">return</span> Length(v2);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(sgn(Dot(v1,v3))&gt;<span class="number">0</span>) <span class="keyword">return</span> Length(v3);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">fabs</span>(Cross(v1,v2))/Length(v1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="点在直线上的投影"><a href="#点在直线上的投影" class="headerlink" title="点在直线上的投影"></a>点在直线上的投影</h3><img data-src="/images/acm/2019/projection.jpg" width="50%">
+
+<p>设$Q=A+t_0\vec v$，$\vec v$是$\vec{AB}$<br>因为$PQ$ $\bot$ $AB$，两个向量点积为0，因此：$Dot(\vec v,P-(A+t_0\vec v))=0$<br>根据分配律(中学书上有证明，自己画个图做投影就能看出来)有：$Dot(\vec v,P-A)-t_0\times Dot(\vec v,\vec v)=0$<br>因此：$t_0=\dfrac{Dot(\vec v,P-A)}{Dot(\vec v,\vec v)}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//点在直线上的投影</span></span><br><span class="line"><span class="function">Point <span class="title">GetLineProjection</span><span class="params">(Point P,Point A,Point B)</span></span>&#123;</span><br><span class="line">    Vector v=B-A;</span><br><span class="line">    <span class="keyword">return</span> A+v*(Dot(v,P-A)/Dot(v,v));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="线段相交判定"><a href="#线段相交判定" class="headerlink" title="线段相交判定"></a>线段相交判定</h3><p>首先规定：“规范相交”指线段相交，并且交点不是线段端点。“非规范相交”可以在端点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断两线段严格相交</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">SegmentProperIntersection</span><span class="params">(Point a1,Point a2,Point b1,Point b2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> c1=Cross(a2-a1,b1-a1), c2=Cross(a2-a1,b2-a1),</span><br><span class="line">           c3=Cross(b2-b1,a1-b1), c4=Cross(b2-b1,a2-b1);</span><br><span class="line">    <span class="keyword">return</span> sgn(c1)*sgn(c2)&lt;<span class="number">0</span> &amp;&amp; sgn(c3)*sgn(c4)&lt;<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断点是否在线段上</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PointOnSegment</span><span class="params">(Point P,Point a1,Point a2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sgn(Cross(a1-P,a2-P))==<span class="number">0</span> &amp;&amp; sgn(Dot(a1-P,a2-P))&lt;=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="点在多边形内判定"><a href="#点在多边形内判定" class="headerlink" title="点在多边形内判定"></a>点在多边形内判定</h3><blockquote>
+<p>主要有两种方法：1，射线法。2，转角法。<br>假设多边形顶点按照逆时针顺序排列。</p>
+</blockquote>
+<ol>
+<li><p>射线法：判断点在多边形内：从该点做一条水平向右的射线，统计射线与多边形相交的情况，若相交次数为偶数，则说明该点在形外，否则在形内。为了便于交点在定点或射线与某些边重合时的判断，可以将每条边看成左开右闭的线段，即若交点为左端点就不计算。</p>
+<p>一般用转角法比较简单，感兴趣的自己根据上面的步骤实现代码。</p>
+</li>
+<li><p>转角法：看多边形相对于这个点转了多少度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">PointInPolygon</span><span class="params">(Point p,Point*poly,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> wn=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(PointOnSegment(p,poly[i],poly[(i+<span class="number">1</span>)%n])) <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//在边界上</span></span><br><span class="line">        <span class="keyword">int</span> k=sgn( Cross(poly[(i+<span class="number">1</span>)%n]-poly[i], p-poly[i] ) );<span class="comment">//判断点在边的哪侧,1:左,-1:右</span></span><br><span class="line">        <span class="keyword">int</span> d1=sgn( poly[i].y-p.y );</span><br><span class="line">        <span class="keyword">int</span> d2=sgn( poly[(i+<span class="number">1</span>)%n].y-p.y );</span><br><span class="line">        <span class="keyword">if</span>(k&gt;<span class="number">0</span> &amp;&amp; d1&lt;=<span class="number">0</span> &amp;&amp; d2&gt;<span class="number">0</span>) wn++;<span class="comment">//左开右闭，没有k==0的舍去重边</span></span><br><span class="line">        <span class="keyword">if</span>(k&lt;<span class="number">0</span> &amp;&amp; d2&lt;=<span class="number">0</span> &amp;&amp; d1&gt;<span class="number">0</span>) wn--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(wn!=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;<span class="comment">//内部</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//外部</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="与圆有关的相关计算"><a href="#与圆有关的相关计算" class="headerlink" title="与圆有关的相关计算"></a>与圆有关的相关计算</h3><p><mark>自学</mark></p>
+<h3 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h3><blockquote>
+<p>凸包就是把所有点包起来并且面积最小的凸多边形[^2]。</p>
+</blockquote>
+<p>常用的求解凸包的算法有$Graham$算法和$Andrew$算法。</p>
+<p>这里仅介绍基于水平排序[^3]的$Andrew$算法。先按照水平序排序，删除重复点后得到序列$p_1,p_2,···$，然后把$p_1,p_2$放到凸包中，从$p_3$开始，当新点在凸包”前进“方向的左边时继续，否则一次删除最近加入凸包的点，直到新点在左边。</p>
+<p><img data-src="/images/acm/2019/convexhull.jpg"></p>
+<p><a target="_blank" href="https://blog.csdn.net/love_phoebe/article/details/81192919" rel="external nofollow noreferrer noopener">然后看个完整的过程</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Point&amp; a,<span class="keyword">const</span> Point&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> a.x&lt;b.x||(a.x==b.x&amp;&amp;a.y&lt;b.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当精度要求高时，需要用sgn三态函数进行比较</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ConvexHull</span><span class="params">(Point* p,<span class="keyword">int</span> n,Point* ch)</span></span>&#123;</span><br><span class="line">    sort(p,p+n);<span class="comment">//先比较x坐标，再比较y坐标</span></span><br><span class="line">    n=unique(p,p+n)-p;<span class="comment">//去重，这个算法如果有重复的点就会出错</span></span><br><span class="line">    <span class="keyword">int</span> m=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(m&gt;<span class="number">1</span> &amp;&amp; Cross(ch[m<span class="number">-1</span>]-ch[m<span class="number">-2</span>], p[i]-ch[m<span class="number">-1</span>])&lt;=<span class="number">0</span> ) --m;<span class="comment">//如果不希望在凸包边上有点，可以将&lt;=改为&lt;</span></span><br><span class="line">        ch[m++]=p[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> k=m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">while</span>(m&gt;k &amp;&amp; Cross(ch[m<span class="number">-1</span>]-ch[m<span class="number">-2</span>], p[i]-ch[m<span class="number">-1</span>])&lt;=<span class="number">0</span>) --m;</span><br><span class="line">        ch[m++]=p[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">1</span>) m--;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="半平面交"><a href="#半平面交" class="headerlink" title="半平面交"></a>半平面交</h3><p><mark>自学</mark></p>
+<h3 id="平面区域"><a href="#平面区域" class="headerlink" title="平面区域"></a>平面区域</h3><p><mark>自学</mark></p>
+<h2 id="小技巧和小陷阱"><a href="#小技巧和小陷阱" class="headerlink" title="小技巧和小陷阱"></a>小技巧和小陷阱</h2><ol>
+<li><p><code>double hypot(double x,double y)</code>用来求$\sqrt{x^2+y^2}$</p>
+</li>
+<li><p><code>atan2(y,x)</code>函数用来求向量<code>(x,y)</code>的极角（单位：弧度）。三角函数都很慢，不可大量使用。</p>
+</li>
+<li><p>有些题目明确说明了坐标是整型，那么我们一定要把点的结构体中的坐标类型改成<code>int</code>，否则精度上容易出错。</p>
+</li>
+<li><p>因为被计算机表示浮点数的方式所限制，CPU在进行浮点数计算时会出现误差。如执行<code>0.1 + 0.2 == 0.3</code>结果往往为<code>false</code>，在四则运算中，加减法对精度的影响较小，而乘法对精度的影响更大，<mark>除法的对精度的影响最大</mark>。所以，在设计算法时，为了提高最终结果的精度，要尽量减少计算的数量，尤其是乘法和除法的数量。<br>浮点数与浮点数之间不能直接比较，要引入一个<code>eps</code>常量。<code>eps</code>是epsilon（$\epsilon$）的简写，在数学中往往代表任意小的量。在对浮点数进行大小比较时，如果他们的差的绝对值小于这个量，那么我们就认为他们是相等的，从而避免了浮点数精度误差对浮点数比较的影响。eps在大部分题目时取<code>1e-8</code>就够了，但要根据题目实际的内容进行调整。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sgn返回x经过eps处理的符号，负数返回-1，正数返回1，x的绝对值如果足够小，就返回0。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sgn</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; <span class="keyword">return</span> x &lt; -eps ? <span class="number">-1</span> : x &gt; eps ? <span class="number">1</span> : <span class="number">0</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/acm/2019/float-table.jpg"></p>
+</li>
+<li><p>用<code>scanf</code>输入浮点数时，<code>double</code>的占位符是<code>%lf</code>，但是浮点数<code>double</code>在<code>printf</code>系列函数中的标准占位符是<code>%f</code>而不是<code>%lf</code>，使用时最好使用前者，因为虽然后者在大部分的计算机和编译器中能得到正确结果，但在有些情况下会出错（<mark>比如在POJ上</mark>）。</p>
+</li>
+<li><p>当提供给C语言中的标准库函数<code>double sqrt (double x)</code>的<code>x</code>为负值时，<code>sqrt</code>会返回<code>nan</code>，输出时会显示成<code>nan</code>或<code>-1.#IND00</code>（根据系统的不同）。在进行计算几何编程时，经常有对接近零的数进行开方的情况，如果输入的数是一个极小的负数，那么<code>sqrt</code>会返回<code>nan</code>这个错误的结果，导致输出错误。解决的方法就是将<code>sqrt</code>包装一下，<mark>在每次开方前进行判断</mark>。<code>double mysqrt(double x)&#123;return max(0.0, sqrt(x))&#125;;</code></p>
+</li>
+<li><p>大部分的标程的输出是不会输出<mark>负零</mark>的，有时这样的结果是错误的，所以在没有Special Judge的题目要求四舍五入时，不要忘记对负零进行特殊判断。</p>
+</li>
+</ol>
+<blockquote>
+<p>涉及的定义</p>
+</blockquote>
+<p>[^3]: 水平排序：$Andrew$算法水平排序是按照 $x$ 从小到大排序(如果 $x$ 相同，按照 $y$ 从小到大排序)，在 $Graham$ 中先排$y$<br>[^2]: 凸多边形：把凸多边形的任意一条边向两边无限延长为一条直线时，其他各边都在此直线的同旁，那么这个多边形叫做凸多边形。<br>[^1]: 正交：是<a target="_blank" href="https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0" rel="external nofollow noreferrer noopener">线性代数</a>的概念，是<a target="_blank" href="https://zh.wikipedia.org/wiki/%E5%9E%82%E7%9B%B4" rel="external nofollow noreferrer noopener">垂直</a>这一直观概念的推广。作为一个形容词，只有在一个确定的<a target="_blank" href="https://zh.wikipedia.org/wiki/%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4" rel="external nofollow noreferrer noopener">内积空间</a>中才有意义。若内积空间中两<a target="_blank" href="https://zh.wikipedia.org/wiki/%E5%90%91%E9%87%8F" rel="external nofollow noreferrer noopener">向量</a>的<a target="_blank" href="https://zh.wikipedia.org/wiki/%E5%85%A7%E7%A9%8D" rel="external nofollow noreferrer noopener">内积</a>为0，则称它们是<strong>正交</strong>的。如果能够定义向量间的夹角，则正交可以直观的理解为垂直。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" rel="tag"># 计算几何</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/kuangbin-topic/13/" rel="prev" title="专题十三 基础计算几何">
+                  <i class="fa fa-chevron-left"></i> 专题十三 基础计算几何
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Junior/ACM-ICPC-Asia-Regional-Contest/" rel="next" title="ACM-ICPC Asia Regional Contest">
+                  ACM-ICPC Asia Regional Contest <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pyai</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"5pVk0EYlzYYPAsFwH0CyoRy3-gzGzoHsz","app_key":"JH96EvkvO6Q5slVncPrGo7NG","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://pyai.top/tutorial/Computer-geometry-tutorial/',]
+      });
+      });
+  </script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pyai.top","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="POJ 1251 Jungle Roads">
+<meta property="og:type" content="article">
+<meta property="og:title" content="专题六 最小生成树">
+<meta property="og:url" content="https://pyai.top/kuangbin-topic/6/index.html">
+<meta property="og:site_name" content="pyai&#39;s blog">
+<meta property="og:description" content="POJ 1251 Jungle Roads">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-07-21T01:57:19.000Z">
+<meta property="article:modified_time" content="2020-09-04T04:15:45.946Z">
+<meta property="article:author" content="pyai">
+<meta property="article:tag" content="bfs">
+<meta property="article:tag" content="邝斌专题">
+<meta property="article:tag" content="最小生成树">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pyai.top/kuangbin-topic/6/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>专题六 最小生成树 | pyai's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">pyai's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-腾讯兔小巢">
+
+    <a href="https://support.qq.com/products/109158" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>腾讯兔小巢</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-1251-Jungle-Roads"><span class="nav-number">1.</span> <span class="nav-text">POJ 1251 Jungle Roads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-1287-Networking"><span class="nav-number">2.</span> <span class="nav-text">POJ 1287 Networking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-2031-Building-a-Space-Station"><span class="nav-number">3.</span> <span class="nav-text">POJ 2031 Building a Space Station</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-2421-Constructing-Roads"><span class="nav-number">4.</span> <span class="nav-text">POJ 2421 Constructing Roads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZOJ-1586-QS-Network"><span class="nav-number">5.</span> <span class="nav-text">ZOJ 1586 QS Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-1789-Truck-History"><span class="nav-number">6.</span> <span class="nav-text">POJ 1789 Truck History</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-2349-Arctic-Network"><span class="nav-number">7.</span> <span class="nav-text">POJ 2349 Arctic Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-1751-Highways"><span class="nav-number">8.</span> <span class="nav-text">POJ 1751 Highways</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-1258-Agri-Net"><span class="nav-number">9.</span> <span class="nav-text">POJ 1258 Agri-Net</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-3026-Borg-Maze"><span class="nav-number">10.</span> <span class="nav-text">POJ 3026 Borg Maze</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POJ-1679-The-Unique-MST"><span class="nav-number">11.</span> <span class="nav-text">POJ 1679 The Unique MST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDU-1233-%E8%BF%98%E6%98%AF%E7%95%85%E9%80%9A%E5%B7%A5%E7%A8%8B"><span class="nav-number">12.</span> <span class="nav-text">HDU 1233 还是畅通工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDU-1301-Jungle-Roads"><span class="nav-number">13.</span> <span class="nav-text">HDU 1301 Jungle Roads</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDU-1875-%E7%95%85%E9%80%9A%E5%B7%A5%E7%A8%8B%E5%86%8D%E7%BB%AD"><span class="nav-number">14.</span> <span class="nav-text">HDU 1875 畅通工程再续</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pyai</p>
+  <div class="site-description" itemprop="description">记录生活的点点滴滴!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://t.me/wopyai" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;wopyai" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://m.do.co/c/6d9bcba26196" title="https:&#x2F;&#x2F;m.do.co&#x2F;c&#x2F;6d9bcba26196" rel="noopener" target="_blank">DO服务器</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zhangzef.com/" title="https:&#x2F;&#x2F;zhangzef.com&#x2F;" rel="noopener" target="_blank">张泽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cnguu.cn/" title="https:&#x2F;&#x2F;blog.cnguu.cn&#x2F;" rel="noopener" target="_blank">vuepress-theme-yur作者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://is.boxmoe.cn/" title="https:&#x2F;&#x2F;is.boxmoe.cn&#x2F;" rel="noopener" target="_blank">霓红的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cugxuan.cn/" title="https:&#x2F;&#x2F;blog.cugxuan.cn&#x2F;" rel="noopener" target="_blank">泫</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/kuangbin-topic/6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          专题六 最小生成树
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-21 09:57:19" itemprop="dateCreated datePublished" datetime="2019-07-21T09:57:19+08:00">2019-07-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:45" itemprop="dateModified" datetime="2020-09-04T12:15:45+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E9%82%9D%E6%96%8C%E4%B8%93%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">ACM-邝斌专题</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/kuangbin-topic/6/" class="post-meta-item leancloud_visitors" data-flag-title="专题六 最小生成树" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="POJ-1251-Jungle-Roads"><a href="#POJ-1251-Jungle-Roads" class="headerlink" title="POJ 1251 Jungle Roads"></a><a target="_blank" href="https://vjudge.net/problem/POJ-1251" rel="external nofollow noreferrer noopener"><strong>POJ 1251</strong></a> Jungle Roads</h3><a id="more"></a>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">27</span>+<span class="number">10</span>;<span class="comment">//最大点数</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=<span class="number">75</span>+<span class="number">10</span>;<span class="comment">//最大边数</span></span><br><span class="line"><span class="keyword">int</span> F[MAXN];<span class="comment">//并查集使用</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> u,v,w;</span><br><span class="line">&#125;edge[MAXM];</span><br><span class="line"><span class="keyword">int</span> tol;<span class="comment">//边数，加边前赋值为0</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[tol].u=u;</span><br><span class="line">    edge[tol].v=v;</span><br><span class="line">    edge[tol++].w=w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//排序函数，将边按照权值从小到大排序</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Edge a,Edge b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w&lt;b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(F[x]==<span class="number">-1</span>) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> F[x]=find(F[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//传入点数，返回最小生成树的权值，如果不连通返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kruskal</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(F,<span class="number">-1</span>,<span class="keyword">sizeof</span> F);</span><br><span class="line">    sort(edge,edge+tol,cmp);</span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;<span class="comment">//计算加入的边数</span></span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tol;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u=edge[i].u;</span><br><span class="line">        <span class="keyword">int</span> v=edge[i].v;</span><br><span class="line">        <span class="keyword">int</span> w=edge[i].w;</span><br><span class="line">        <span class="keyword">int</span> t1=find(u);</span><br><span class="line">        <span class="keyword">int</span> t2=find(v);</span><br><span class="line">        <span class="keyword">if</span>(t1!=t2)&#123;</span><br><span class="line">            ans+=w;</span><br><span class="line">            F[t1]=t2;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt==n<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cnt&lt;n<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//不连通</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="number">0</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n,k,w;</span><br><span class="line">    <span class="keyword">char</span> u,v;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">        tol=<span class="number">0</span>;<span class="comment">//初始化边数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;u&gt;&gt;k;</span><br><span class="line">            <span class="keyword">while</span>(k--)&#123;</span><br><span class="line">                <span class="built_in">cin</span>&gt;&gt;v&gt;&gt;w;</span><br><span class="line">                addedge(u-<span class="string">&#x27;A&#x27;</span>,v-<span class="string">&#x27;A&#x27;</span>,w);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;Kruskal(n)&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="POJ-1287-Networking"><a href="#POJ-1287-Networking" class="headerlink" title="POJ 1287 Networking"></a><a target="_blank" href="https://vjudge.net/problem/POJ-1287" rel="external nofollow noreferrer noopener"><strong>POJ 1287</strong></a> Networking</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">50</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=MAXN*MAXN;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> u,v,w;</span><br><span class="line">&#125;edge[MAXM];</span><br><span class="line"><span class="keyword">int</span> tol=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> F[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    edge[tol].u=u;</span><br><span class="line">    edge[tol].v=v;</span><br><span class="line">    edge[tol++].w=w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Edge a,Edge b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w&lt;b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(F[x]==<span class="number">-1</span>) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> F[x]=find(F[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kruskal</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(F,<span class="number">-1</span>,<span class="keyword">sizeof</span> F);</span><br><span class="line">    sort(edge,edge+tol,cmp);</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>,cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tol;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u=edge[i].u;</span><br><span class="line">        <span class="keyword">int</span> v=edge[i].v;</span><br><span class="line">        <span class="keyword">int</span> w=edge[i].w;</span><br><span class="line">        <span class="keyword">int</span> t1=find(u);</span><br><span class="line">        <span class="keyword">int</span> t2=find(v);</span><br><span class="line">        <span class="keyword">if</span>(t1!=t2)&#123;</span><br><span class="line">            ans+=w;</span><br><span class="line">            cnt++;</span><br><span class="line">            F[t1]=t2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt==n<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cnt&lt;n<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> ans; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,u,v,w;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        tol=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;u&gt;&gt;v&gt;&gt;w;</span><br><span class="line">            addedge(u,v,w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;Kruskal(n)&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="POJ-2031-Building-a-Space-Station"><a href="#POJ-2031-Building-a-Space-Station" class="headerlink" title="POJ 2031 Building a Space Station"></a><a target="_blank" href="https://vjudge.net/problem/POJ-2031" rel="external nofollow noreferrer noopener"><strong>POJ 2031</strong></a> Building a Space Station</h3><h3 id="POJ-2421-Constructing-Roads"><a href="#POJ-2421-Constructing-Roads" class="headerlink" title="POJ 2421 Constructing Roads"></a><a target="_blank" href="https://vjudge.net/problem/POJ-2421" rel="external nofollow noreferrer noopener"><strong>POJ 2421</strong></a> Constructing Roads</h3><h3 id="ZOJ-1586-QS-Network"><a href="#ZOJ-1586-QS-Network" class="headerlink" title="ZOJ 1586 QS Network"></a><a target="_blank" href="https://vjudge.net/problem/ZOJ-1586" rel="external nofollow noreferrer noopener"><strong>ZOJ 1586</strong></a> QS Network</h3><h3 id="POJ-1789-Truck-History"><a href="#POJ-1789-Truck-History" class="headerlink" title="POJ 1789 Truck History"></a><a target="_blank" href="https://vjudge.net/problem/POJ-1789" rel="external nofollow noreferrer noopener"><strong>POJ 1789</strong></a> Truck History</h3><h3 id="POJ-2349-Arctic-Network"><a href="#POJ-2349-Arctic-Network" class="headerlink" title="POJ 2349 Arctic Network"></a><a target="_blank" href="https://vjudge.net/problem/POJ-2349" rel="external nofollow noreferrer noopener"><strong>POJ 2349</strong></a> Arctic Network</h3><h3 id="POJ-1751-Highways"><a href="#POJ-1751-Highways" class="headerlink" title="POJ 1751 Highways"></a><a target="_blank" href="https://vjudge.net/problem/POJ-1751" rel="external nofollow noreferrer noopener"><strong>POJ 1751</strong></a> Highways</h3><h3 id="POJ-1258-Agri-Net"><a href="#POJ-1258-Agri-Net" class="headerlink" title="POJ 1258 Agri-Net"></a><a target="_blank" href="https://vjudge.net/problem/POJ-1258" rel="external nofollow noreferrer noopener"><strong>POJ 1258</strong></a> Agri-Net</h3><h3 id="POJ-3026-Borg-Maze"><a href="#POJ-3026-Borg-Maze" class="headerlink" title="POJ 3026 Borg Maze"></a><a target="_blank" href="https://vjudge.net/problem/POJ-3026" rel="external nofollow noreferrer noopener"><strong>POJ 3026</strong></a> Borg Maze</h3><p><strong>分析</strong>： 就是在一个迷宫中从 $S$ 出发去抓所有外星人👽 $A$ ，问你最短路径，因为可以在 $S$ 和 $A$ 处分裂，所以相当于计算路径覆盖的边的最少个数。</p>
+<p>显然这就转换成了最小生成树问题。先从 $N+1$ 个点分别作为起点进行 $BFS$ ，记录到其它点的最短路径，这就生成了一个无向完全图，既然是个稠密图那就跑一个 $Prim$ 算法求最小生成树，然后这棵树的边长和就是答案。</p>
+<p>时间复杂度 $O(TN^2)$</p>
+<div class="note danger"><p>注意：测试数据特别坑，输入的迷宫尺寸后面会有很多空格，好像也有一些空行，参考我的输入即可。</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;complex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxside = <span class="number">50</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">char</span> maze[maxside][maxside], id[maxside][maxside];</span><br><span class="line"><span class="keyword">int</span> T, N, C, R; <span class="comment">// C-&gt;column R-&gt;row </span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y, step;</span><br><span class="line">    Point()&#123;&#125;</span><br><span class="line">    Point(<span class="keyword">int</span> _x, <span class="keyword">int</span> _y, <span class="keyword">int</span> _step)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;x = _x;</span><br><span class="line">        <span class="keyword">this</span>-&gt;y = _y;</span><br><span class="line">        <span class="keyword">this</span>-&gt;step = _step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isLegal</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &gt; <span class="number">0</span> &amp;&amp; x &lt;= R &amp;&amp; y &gt; <span class="number">0</span> &amp;&amp; y &lt;= C &amp;&amp; maze[x][y] != <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Queue</span>&#123;</span></span><br><span class="line">    Point node[maxside * maxside];</span><br><span class="line">    <span class="keyword">int</span> fr, re;<span class="comment">// front rear</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line">        fr = re = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (fr == re);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">const</span> Point &amp;x)</span></span>&#123;</span><br><span class="line">        node[re++] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> Point <span class="title">front_pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> node[fr++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;qu;</span><br><span class="line"><span class="keyword">bool</span> vis[maxside][maxside];</span><br><span class="line"><span class="keyword">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">int</span> dis[maxside * maxside][maxside * maxside];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">BFS</span><span class="params">(<span class="keyword">int</span> sx, <span class="keyword">int</span> sy)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="literal">false</span>, <span class="keyword">sizeof</span> vis);</span><br><span class="line">    qu.clear();</span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>;</span><br><span class="line">    qu.push(Point(sx, sy, step));</span><br><span class="line">    vis[sx][sy] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(!qu.empty())&#123;</span><br><span class="line">        Point cur = qu.front_pop();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i)&#123;</span><br><span class="line">            <span class="function">Point <span class="title">nex</span><span class="params">(cur.x + dir[i][<span class="number">0</span>], cur.y + dir[i][<span class="number">1</span>], cur.step + <span class="number">1</span>)</span></span>;</span><br><span class="line">            <span class="keyword">if</span>(!nex.isLegal() || vis[nex.x][nex.y]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(maze[nex.x][nex.y] == <span class="string">&#x27;S&#x27;</span> || maze[nex.x][nex.y] == <span class="string">&#x27;A&#x27;</span>) &#123;</span><br><span class="line">                dis[id[sx][sy]][id[nex.x][nex.y]] = nex.step;</span><br><span class="line">            &#125;</span><br><span class="line">            qu.push(nex);</span><br><span class="line">            vis[nex.x][nex.y] = <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">bool</span> inMST[maxside * maxside];</span><br><span class="line"><span class="keyword">int</span> lowc[maxside * maxside];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Prim</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(inMST, <span class="literal">false</span>, <span class="keyword">sizeof</span> inMST);</span><br><span class="line">    inMST[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        lowc[i] = dis[<span class="number">0</span>][i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> minc = INF;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!inMST[j] &amp;&amp; minc &gt; lowc[j])&#123;</span><br><span class="line">                minc = lowc[j];</span><br><span class="line">                p = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minc == INF) <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//原图不联通</span></span><br><span class="line">        ans += minc;</span><br><span class="line">        inMST[p] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!inMST[j] &amp;&amp; lowc[j] &gt; dis[p][j])&#123;</span><br><span class="line">                lowc[j] = dis[p][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T); </span><br><span class="line">    <span class="keyword">while</span> (T--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;C, &amp;R);</span><br><span class="line">        <span class="comment">//Read for an extra time to skip the empty line. </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= R; ++i)&#123;</span><br><span class="line">            gets(maze[i]+<span class="number">1</span>); </span><br><span class="line">        &#125;</span><br><span class="line">        N = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= R; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= C; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(maze[i][j] == <span class="string">&#x27;S&#x27;</span>) id[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(maze[i][j] == <span class="string">&#x27;A&#x27;</span>) id[i][j] = N++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">memset</span>(dis, <span class="number">0</span>, <span class="keyword">sizeof</span> dis);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= R; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= C; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(maze[i][j] == <span class="string">&#x27;S&#x27;</span> || maze[i][j] == <span class="string">&#x27;A&#x27;</span>) BFS(i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, Prim());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="POJ-1679-The-Unique-MST"><a href="#POJ-1679-The-Unique-MST" class="headerlink" title="POJ 1679 The Unique MST"></a><a target="_blank" href="https://vjudge.net/problem/POJ-1679" rel="external nofollow noreferrer noopener"><strong>POJ 1679</strong></a> The Unique MST</h3><h3 id="HDU-1233-还是畅通工程"><a href="#HDU-1233-还是畅通工程" class="headerlink" title="HDU 1233 还是畅通工程"></a><a target="_blank" href="https://vjudge.net/problem/HDU-1233" rel="external nofollow noreferrer noopener"><strong>HDU 1233</strong></a> 还是畅通工程</h3><h3 id="HDU-1301-Jungle-Roads"><a href="#HDU-1301-Jungle-Roads" class="headerlink" title="HDU 1301 Jungle Roads"></a><a target="_blank" href="https://vjudge.net/problem/HDU-1301" rel="external nofollow noreferrer noopener"><strong>HDU 1301</strong></a> Jungle Roads</h3><h3 id="HDU-1875-畅通工程再续"><a href="#HDU-1875-畅通工程再续" class="headerlink" title="HDU 1875 畅通工程再续"></a><a target="_blank" href="https://vjudge.net/problem/HDU-1875" rel="external nofollow noreferrer noopener"><strong>HDU 1875</strong></a> 畅通工程再续</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/bfs/" rel="tag"># bfs</a>
+              <a href="/tags/%E9%82%9D%E6%96%8C%E4%B8%93%E9%A2%98/" rel="tag"># 邝斌专题</a>
+              <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag"># 最小生成树</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/kuangbin-topic/4/" rel="prev" title="专题四 最短路练习">
+                  <i class="fa fa-chevron-left"></i> 专题四 最短路练习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/AC-everyday/Codeforces-Round-100-C-New-Year-Snowmen/" rel="next" title="Codeforces Round #100 C. New Year Snowmen">
+                  Codeforces Round #100 C. New Year Snowmen <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pyai</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"5pVk0EYlzYYPAsFwH0CyoRy3-gzGzoHsz","app_key":"JH96EvkvO6Q5slVncPrGo7NG","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://pyai.top/kuangbin-topic/6/',]
+      });
+      });
+  </script>
+
+    </div>
+</body>
+</html>

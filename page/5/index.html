@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pyai.top","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="记录生活的点点滴滴!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="pyai&#39;s blog">
+<meta property="og:url" content="https://pyai.top/page/5/index.html">
+<meta property="og:site_name" content="pyai&#39;s blog">
+<meta property="og:description" content="记录生活的点点滴滴!">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="pyai">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pyai.top/page/5/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>pyai's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">pyai's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-腾讯兔小巢">
+
+    <a href="https://support.qq.com/products/109158" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>腾讯兔小巢</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pyai</p>
+  <div class="site-description" itemprop="description">记录生活的点点滴滴!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://t.me/wopyai" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;wopyai" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://m.do.co/c/6d9bcba26196" title="https:&#x2F;&#x2F;m.do.co&#x2F;c&#x2F;6d9bcba26196" rel="noopener" target="_blank">DO服务器</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zhangzef.com/" title="https:&#x2F;&#x2F;zhangzef.com&#x2F;" rel="noopener" target="_blank">张泽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cnguu.cn/" title="https:&#x2F;&#x2F;blog.cnguu.cn&#x2F;" rel="noopener" target="_blank">vuepress-theme-yur作者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://is.boxmoe.cn/" title="https:&#x2F;&#x2F;is.boxmoe.cn&#x2F;" rel="noopener" target="_blank">霓红的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cugxuan.cn/" title="https:&#x2F;&#x2F;blog.cugxuan.cn&#x2F;" rel="noopener" target="_blank">泫</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/AC-everyday/2019-Multi-University-Training-Contest-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AC-everyday/2019-Multi-University-Training-Contest-2/" class="post-title-link" itemprop="url">2019 Multi-University Training Contest 2</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-24 23:37:50" itemprop="dateCreated datePublished" datetime="2019-07-24T23:37:50+08:00">2019-07-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">ACM-数据结构</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/AC-everyday/2019-Multi-University-Training-Contest-2/" class="post-meta-item leancloud_visitors" data-flag-title="2019 Multi-University Training Contest 2" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>hdu-6600 <a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=6600">Just Skip The Problem</a></p>
+</blockquote>
+<p><strong>题意</strong>：</p>
+<p>​    这题从比赛开始到比赛结束就没理解对。。。读错题了。 </p>
+<p>就是给你一个数字x，但是你不知道数字x是多少，你需要去通过询问来获得关于x的信息，求最小询问次数的情况下，有<font color="red">多少种方案。</font></p>
+<ul>
+<li>你知道x的二进制形式有n位。</li>
+<li>对于每次询问你可以给出一个0到x之间的整数y，并询问到<code>x&amp;y==y</code>吗。</li>
+</ul>
+<p><strong>题解</strong>：</p>
+<p>​    因为询问次数最少，所以只需要判断二进制的每一位就行了，y可以取1&lt;&lt;0,1&lt;&lt;1,1&lt;&lt;2…..,1&lt;&lt;(n-1)。所以方案数为n!，因为答案对$10^6+3$取模，所以当$n \geq 10^6+3$时，方案数为0</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AC-everyday/2019-Multi-University-Training-Contest-2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/AC-everyday/2019-Multi-University-Training-Contest-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AC-everyday/2019-Multi-University-Training-Contest-1/" class="post-title-link" itemprop="url">2019 Multi-University Training Contest 1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-22 23:43:48" itemprop="dateCreated datePublished" datetime="2019-07-22T23:43:48+08:00">2019-07-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E5%9B%BE%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">ACM-图算法</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/AC-everyday/2019-Multi-University-Training-Contest-1/" class="post-meta-item leancloud_visitors" data-flag-title="2019 Multi-University Training Contest 1" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Problem-D-Vacation"><a href="#Problem-D-Vacation" class="headerlink" title="Problem D.Vacation"></a>Problem D.Vacation</h2><p> <a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=6581">地址</a></p>
+<p><strong>题意</strong>：</p>
+<p>​    n+1辆车，每辆车有个位置$s[i]$，长度$l[i]$和速度$v[i]$，求第一辆车到达终点的时间。<br>有几点比较重要：</p>
+<ul>
+<li>首先题面说了道路狭窄，一次只能通过一辆车，也就是不能超车，即使你速度快的飞起。</li>
+<li>还有就是一辆车到了$stop-line$以后还是以同样的速度行驶。</li>
+</ul>
+<p><strong>题解</strong>：</p>
+<p>​    <font color="red">因为前面车的速度不受后面车的影响，那么我们就分别求从1到n+1​车前面没车的时间，那么1车最终的时间肯定是这n+1个时间重最大的那个时间。</font></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AC-everyday/2019-Multi-University-Training-Contest-1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/AC-everyday/HDU-3790/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AC-everyday/HDU-3790/" class="post-title-link" itemprop="url">HDU-3790 最短路径问题 </a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-22 00:07:35" itemprop="dateCreated datePublished" datetime="2019-07-22T00:07:35+08:00">2019-07-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E5%9B%BE%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">ACM-图算法</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/AC-everyday/HDU-3790/" class="post-meta-item leancloud_visitors" data-flag-title="HDU-3790 最短路径问题 " title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img data-src="/images/acm/2019/hdu-3790-status.png"/>
+
+<ul>
+<li>今天重新做了一下去年暑假被坑的题，当时真是年少无知，超时了以后就再也没尝试这道题，还是太菜了，不知道<code>cin和cout</code>可以让我的程序超时，今天就把输入输出改了一下就过了，还是去年的代码，而且还是一个没优化的$O(N^2)$的$Dijkstra$算法。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AC-everyday/HDU-3790/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/AC-everyday/Codeforces-Round-100-C-New-Year-Snowmen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AC-everyday/Codeforces-Round-100-C-New-Year-Snowmen/" class="post-title-link" itemprop="url">Codeforces Round #100 C. New Year Snowmen</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-21 21:44:19" itemprop="dateCreated datePublished" datetime="2019-07-21T21:44:19+08:00">2019-07-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">ACM-基本算法</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/AC-everyday/Codeforces-Round-100-C-New-Year-Snowmen/" class="post-meta-item leancloud_visitors" data-flag-title="Codeforces Round #100 C. New Year Snowmen" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>题目链接：<a target="_blank" rel="noopener" href="http://codeforces.com/problemset/problem/140/C">http://codeforces.com/problemset/problem/140/C</a></p>
+<ul>
+<li>这个题是我们有次小比赛的题，当时脑子比较乱，写了一堆bug，今天想了起来就补了一下题。</li>
+</ul>
+<blockquote>
+<p>这题就是在处理数据稍微麻烦了点，因为数据范围是1e8，用数组去记录每个值的个数显然是不可能了，于是我用了一个<code>unordered_map</code>来映射每个值出现的次数，然后放到一个按照值的个数排序的优先队列中，优先取出来个数比较多的。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AC-everyday/Codeforces-Round-100-C-New-Year-Snowmen/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/kuangbin-topic/6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/kuangbin-topic/6/" class="post-title-link" itemprop="url">专题六 最小生成树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-21 09:57:19" itemprop="dateCreated datePublished" datetime="2019-07-21T09:57:19+08:00">2019-07-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:45" itemprop="dateModified" datetime="2020-09-04T12:15:45+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E9%82%9D%E6%96%8C%E4%B8%93%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">ACM-邝斌专题</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/kuangbin-topic/6/" class="post-meta-item leancloud_visitors" data-flag-title="专题六 最小生成树" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="POJ-1251-Jungle-Roads"><a href="#POJ-1251-Jungle-Roads" class="headerlink" title="POJ 1251 Jungle Roads"></a><a target="_blank" rel="noopener" href="https://vjudge.net/problem/POJ-1251"><strong>POJ 1251</strong></a> Jungle Roads</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/kuangbin-topic/6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/kuangbin-topic/4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/kuangbin-topic/4/" class="post-title-link" itemprop="url">专题四 最短路练习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-20 23:29:06" itemprop="dateCreated datePublished" datetime="2019-07-20T23:29:06+08:00">2019-07-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:45" itemprop="dateModified" datetime="2020-09-04T12:15:45+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E9%82%9D%E6%96%8C%E4%B8%93%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">ACM-邝斌专题</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/kuangbin-topic/4/" class="post-meta-item leancloud_visitors" data-flag-title="专题四 最短路练习" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="POJ-2387-Til-the-Cows-Come-Home"><a href="#POJ-2387-Til-the-Cows-Come-Home" class="headerlink" title="POJ 2387 Til the Cows Come Home"></a><a target="_blank" rel="noopener" href="https://vjudge.net/problem/POJ-2387"><strong>POJ 2387</strong></a> Til the Cows Come Home</h3><p>题目就是求$T$条双向边，$N$个顶点的单源最短路径$min(1,N)$</p>
+<p>这题用$scanf$会快很多，但我没用它。</p>
+<p>没有优化的$Dijkstra$算法：$Time:157ms$，$O(N^2)$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/kuangbin-topic/4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/kuangbin-topic/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/kuangbin-topic/1/" class="post-title-link" itemprop="url">专题一 简单搜索</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-20 19:11:05" itemprop="dateCreated datePublished" datetime="2019-07-20T19:11:05+08:00">2019-07-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E9%82%9D%E6%96%8C%E4%B8%93%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">ACM-邝斌专题</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/kuangbin-topic/1/" class="post-meta-item leancloud_visitors" data-flag-title="专题一 简单搜索" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="POJ-1321-棋盘问题"><a href="#POJ-1321-棋盘问题" class="headerlink" title="POJ 1321 棋盘问题"></a><a target="_blank" rel="noopener" href="https://vjudge.net/problem/POJ-1321"><strong>POJ 1321</strong></a> 棋盘问题</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/kuangbin-topic/1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Git-everyday/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Git-everyday/" class="post-title-link" itemprop="url">Git使用日常</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-19 21:32:47" itemprop="dateCreated datePublished" datetime="2019-06-19T21:32:47+08:00">2019-06-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Git-everyday/" class="post-meta-item leancloud_visitors" data-flag-title="Git使用日常" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h3><blockquote>
+<p>2019-06-19 今天不小心把我们的安卓大作业搞坏了，需要把这次push的撤销了，就是回滚到上一次的。</p>
+</blockquote>
+<p><code>git reset --hard HEAD^ git push origin master -f</code>就是这个代码。</p>
+<img data-src="/images/git/jianshu.jpg"/>
+
+<h3 id="本地clone后修改并提交"><a href="#本地clone后修改并提交" class="headerlink" title="本地clone后修改并提交"></a>本地clone后修改并提交</h3><blockquote>
+<p>前提是本机连接你的GitHub了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1, git clone url &#x2F;&#x2F;将repo克隆的当前路径</span><br><span class="line">2, 进行一些修改</span><br><span class="line">3, git add .</span><br><span class="line">4, git commit -m update</span><br><span class="line">5, git push origin master</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Sophomore/data-structure-search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Sophomore/data-structure-search/" class="post-title-link" itemprop="url">数据结构-查找</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-16 11:30:34" itemprop="dateCreated datePublished" datetime="2019-06-16T11:30:34+08:00">2019-06-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%A7%E4%BA%8C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">大二-数据结构</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Sophomore/data-structure-search/" class="post-meta-item leancloud_visitors" data-flag-title="数据结构-查找" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>折半搜索与二叉搜索树的时间性能（ <font color="red">C</font> ）<ul>
+<li>A. 相同     B. 完全不同    C.有时不相同    D.数量级都是$O(log_2n)$</li>
+<li>二叉搜索树也叫二叉排序树，含有n个结点的二叉排序树的AVG(Average Search Length)和树的形态有关。当先后插入的关键字有序时，构成的二叉排序树蜕变为单支树。树的深度为n，其AVG为$\frac{n+1}{2}$（和顺序查找相同），这是最差的情况。显然，最好的情况是，二叉排序树的形态和折半查找的判定树相似，其平均查找长度和$log_2n$成正比。可以证明，就平均而言，二叉排序树的AVG仍然和$log_2n$是同数量级的。</li>
+</ul>
+</li>
+<li>有一个表长为m的散列表，初始状态为空，现将n（n&lt;m）个不同的关键码插入到散列表中，解决冲突的方法是用线性探测法。如果这n个关键码的散列地址都相同，则探测的总次数是$ \frac{n(n-1)}{2}$。</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Sophomore/data-structure-experimental-report/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Sophomore/data-structure-experimental-report/" class="post-title-link" itemprop="url">数据结构实验报告</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-13 08:05:10" itemprop="dateCreated datePublished" datetime="2019-06-13T08:05:10+08:00">2019-06-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%A7%E4%BA%8C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">大二-数据结构</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Sophomore/data-structure-experimental-report/" class="post-meta-item leancloud_visitors" data-flag-title="数据结构实验报告" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>右边👉是实验报告文档&rarr;<a target="_blank" rel="noopener" href="https://download.csdn.net/download/intmainhhh/11238539">📖</a></p>
+<h2 id="实验一-顺序表的操作"><a href="#实验一-顺序表的操作" class="headerlink" title="实验一  顺序表的操作"></a>实验一  顺序表的操作</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Sophomore/data-structure-experimental-report/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pyai</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"5pVk0EYlzYYPAsFwH0CyoRy3-gzGzoHsz","app_key":"JH96EvkvO6Q5slVncPrGo7NG","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>

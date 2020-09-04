@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pyai.top","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="记录生活的点点滴滴!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="pyai&#39;s blog">
+<meta property="og:url" content="https://pyai.top/page/6/index.html">
+<meta property="og:site_name" content="pyai&#39;s blog">
+<meta property="og:description" content="记录生活的点点滴滴!">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="pyai">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pyai.top/page/6/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>pyai's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">pyai's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-腾讯兔小巢">
+
+    <a href="https://support.qq.com/products/109158" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>腾讯兔小巢</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pyai</p>
+  <div class="site-description" itemprop="description">记录生活的点点滴滴!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://t.me/wopyai" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;wopyai" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://m.do.co/c/6d9bcba26196" title="https:&#x2F;&#x2F;m.do.co&#x2F;c&#x2F;6d9bcba26196" rel="noopener" target="_blank">DO服务器</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zhangzef.com/" title="https:&#x2F;&#x2F;zhangzef.com&#x2F;" rel="noopener" target="_blank">张泽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cnguu.cn/" title="https:&#x2F;&#x2F;blog.cnguu.cn&#x2F;" rel="noopener" target="_blank">vuepress-theme-yur作者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://is.boxmoe.cn/" title="https:&#x2F;&#x2F;is.boxmoe.cn&#x2F;" rel="noopener" target="_blank">霓红的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cugxuan.cn/" title="https:&#x2F;&#x2F;blog.cugxuan.cn&#x2F;" rel="noopener" target="_blank">泫</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/How-to-write-on-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/How-to-write-on-hexo/" class="post-title-link" itemprop="url">Hexo上的写作技巧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-13 00:12:40" itemprop="dateCreated datePublished" datetime="2019-06-13T00:12:40+08:00">2019-06-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MarkDown/" itemprop="url" rel="index"><span itemprop="name">MarkDown</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/How-to-write-on-hexo/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo上的写作技巧" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>因为MarkDown内嵌html，所以：</strong></p>
+<ul>
+<li><p>带颜色的字体：<code>&lt;font color=green&gt;这是绿色的&lt;/font&gt;</code><font color=green>这是绿色的</font></p>
+</li>
+<li><p>下面是带背景色的<code>&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=orange&gt;这是一行一列orange&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></p>
+<table><tr><td bgcolor=orange>背景色是：orange</td></tr></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td bgcolor&#x3D;red&gt;背景色是：red&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td bgcolor&#x3D;green&gt;背景色是：green&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td bgcolor&#x3D;blue&gt;背景色是：blue&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;&#x2F;tr&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">  	&lt;td bgcolor&#x3D;gray&gt;背景色是：grat&lt;&#x2F;td&gt;</span><br><span class="line">  &lt;&#x2F;tr&gt;</span><br><span class="line">&lt;&#x2F;table&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<table>
+    <tr>
+      <td bgcolor=red>背景色是：red</td>
+      <td bgcolor=green>背景色是：green</td>
+      <td bgcolor=blue>背景色是：blue</td>
+    </tr>
+    <tr>
+        <td bgcolor=gray>背景色是：grat</td>
+    </tr>
+  </table>
+
+<ul>
+<li><code>&lt;strong style=&quot;background:#5cb85c;color:white;border-radius:10px;padding:1px 3px&quot;&gt;Easy&lt;/strong&gt;</code><strong style="background:#5cb85c;color:white;border-radius:10px;padding:1px 3px">Easy</strong></li>
+<li><code>\frac&#123;a&#125;&#123;x&#125;</code>是$\frac{a}{x}$ ，其中的<code>frac</code>是<code>fraction</code>分数的意思。</li>
+<li>This is my first blog.<br>设置图片大小<code>&lt;img src=&quot;网址&quot; width=&quot;50%&quot; height=&quot;50%&quot;&gt;</code></li>
+</ul>
+<marquee width="100%" direction="right" height="100px">
+This is a sample scrolling text that has scrolls in the upper direction.
+</marquee>
+
+<p><marquee behavior="scroll" direction="up" scrollamount="1">太难了。。。</marquee><br><marquee behavior="scroll" direction="right" scrollamount="12">太难了。。。</marquee><br><marquee behavior="scroll" direction="left" scrollamount="20">太难了。。。</marquee><br><marquee behavior="scroll" direction="right" scrollamount="50">太难了。。。</marquee></p>
+<ul>
+<li><code>&lt;mark&gt;mark&lt;/mark&gt;</code><ul>
+<li><mark>mark</mark></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>左右箭头</p>
+</blockquote>
+<p>⇐⇐ <code>\Leftarrow</code></p>
+<p>⇒⇒ <code>\Rightarrow</code></p>
+<p>⟸⟸ <code>\Longleftarrow</code></p>
+<p>⟹⟹ <code>\Longrightarrow</code></p>
+<blockquote>
+<p>一些符号</p>
+</blockquote>
+<p><del>组合数: $C_n^m$ <code>C_n^m</code></del> 经大佬指正，LaTeX 里组合数标准用法是 <code>\binom</code>)</p>
+<p>组合数: $\binom{n}{m}$ <code>\binom&#123;n&#125;&#123;m&#125;</code> </p>
+<p><del>中划线:</del><code>~~中划线~~</code></p>
+<p>求和:$\sum_{i=1}^{n}$ <code>\sum_&#123;i=1&#125;^&#123;n&#125;</code></p>
+<p>连乘:$\prod_{i=1}^{n}i$<code>\prod_&#123;i=1&#125;^&#123;n&#125;i</code></p>
+<p>除法:$\frac{gg}{zz}$ <code>\frac&#123;gg&#125;&#123;zz&#125;</code></p>
+<p>$\dfrac{gg}{zz}$ <code>\dfrac&#123;gg&#125;&#123;zz&#125;</code> 推荐用这个写除法..字母会比上面那个大一点</p>
+<p>$\mu$ <code>\mu</code></p>
+<p>${a,b,c}$ <code>\&#123;a,b,c\&#125;</code></p>
+<p>点乘<code>a \cdot b</code> $a \cdot b$</p>
+<p>叉乘<code>a \times b</code> $a \times b$</p>
+<p>除以<code>a \div b</code> $a \div b$</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  #include&lt;iostream&gt;</span><br><span class="line">  using namespace std;</span><br><span class="line">  int main()&#123;</span><br><span class="line"><span class="addition">+  		cout&lt;&lt;&quot;hello\n&quot;;</span></span><br><span class="line"><span class="deletion">-     return 0;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>麦克斯韦方程组</p>
+</blockquote>
+<p>$$<br>\begin{eqnarray}<br>\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\<br>\nabla\cdot\vec{B} &amp;=&amp; 0 \\<br>\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\<br>\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)<br>\end{eqnarray}<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;details&gt;</span><br><span class="line">&lt;summary&gt;Code&lt;&#x2F;summary&gt;</span><br><span class="line">code</span><br><span class="line">&lt;&#x2F;details&gt;</span><br></pre></td></tr></table></figure>
+
+<details>
+
+<summary>Code</summary>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;hello\n&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+
+<div class="note default"><p>default 提示块标签</p>
+</div>
+
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+
+<div class="note success"><p>success 提示块标签</p>
+</div>
+
+<div class="note info"><p>info 提示块标签</p>
+</div>
+
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote class="blockquote-center">blah blah blah</blockquote>
+<blockquote class="blockquote-center">
+<p>人生乃是一面镜子，<br>从镜子里认识自己，<br>我要称之为头等大事，<br>也只是我们追求的目的！</p>
+
+</blockquote>
+
+
+
+<p>矩阵 <a target="_blank" href="https://math-linux.com/latex-26/faq/latex-faq/article/how-to-write-matrices-in-latex-matrix-pmatrix-bmatrix-vmatrix-vmatrix" rel="external nofollow noreferrer noopener">🔗</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">S&#x3D;</span><br><span class="line">\begin&#123;bmatrix&#125;</span><br><span class="line">x_&#123;11&#125; &amp; x_&#123;12&#125;  &amp; \cdots   &amp; x_&#123;1m&#125;   \\\\</span><br><span class="line">x_&#123;21&#125; &amp; x_&#123;22&#125;  &amp; \cdots   &amp; x_&#123;2m&#125;  \\\\</span><br><span class="line">\vdots &amp; \vdots  &amp; \ddots   &amp; \vdots  \\\\</span><br><span class="line">x_&#123;n1&#125; &amp; x_&#123;n2&#125;  &amp; \cdots\  &amp; x_&#123;nm&#125;  \\\\</span><br><span class="line">\end&#123;bmatrix&#125;</span><br><span class="line">$$</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>$$<br>S=<br>\begin{bmatrix}<br>x_{11} &amp; x_{12}  &amp; \cdots   &amp; x_{1m}   \\<br>x_{21} &amp; x_{22}  &amp; \cdots   &amp; x_{2m}  \\<br>\vdots &amp; \vdots  &amp; \ddots   &amp; \vdots  \\<br>x_{n1} &amp; x_{n2}  &amp; \cdots\  &amp; x_{nm}  \\<br>\end{bmatrix}<br>$$</p>
+<p>显示一组图片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% grouppicture [group]-[layout] %&#125;&#123;% endgrouppicture %&#125;</span><br><span class="line">&#123;% gp [group]-[layout] %&#125;&#123;% endgp %&#125;</span><br><span class="line"></span><br><span class="line">[group]  : Total number of pictures to add in the group.</span><br><span class="line">[layout] : Default picture under the group to show.</span><br></pre></td></tr></table></figure>
+
+<p>使用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% gp 3-1 %&#125;</span><br><span class="line">  ![](https:&#x2F;&#x2F;pyai.top&#x2F;images&#x2F;avatar.jpg)</span><br><span class="line">  ![](https:&#x2F;&#x2F;pyai.top&#x2F;images&#x2F;avatar.jpg)</span><br><span class="line">  ![](https:&#x2F;&#x2F;pyai.top&#x2F;images&#x2F;avatar.jpg)</span><br><span class="line">&#123;% endgp %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://pyai.top/images/avatar.jpg"></div><div class="group-picture-column"><img data-src="https://pyai.top/images/avatar.jpg"></div><div class="group-picture-column"><img data-src="https://pyai.top/images/avatar.jpg"></div></div></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/my-ACM-template/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/my-ACM-template/" class="post-title-link" itemprop="url">我的ACM模版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-13 00:07:28" itemprop="dateCreated datePublished" datetime="2019-06-13T00:07:28+08:00">2019-06-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:45" itemprop="dateModified" datetime="2020-09-04T12:15:45+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E6%A8%A1%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">ACM-模版</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/my-ACM-template/" class="post-meta-item leancloud_visitors" data-flag-title="我的ACM模版" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我的ACM模版(参考了kuangbin大神的)，持续更新...</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/my-ACM-template/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Unix/LinuxOrMacOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Unix/LinuxOrMacOS/" class="post-title-link" itemprop="url">常用Linux/macOS命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-12 23:58:46" itemprop="dateCreated datePublished" datetime="2019-06-12T23:58:46+08:00">2019-06-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Unix/LinuxOrMacOS/" class="post-meta-item leancloud_visitors" data-flag-title="常用Linux/macOS命令" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Finder"><a href="#Finder" class="headerlink" title="Finder"></a>Finder</h3><h4 id="直接进入某个路径下：command-shift-G"><a href="#直接进入某个路径下：command-shift-G" class="headerlink" title="直接进入某个路径下：command + shift + G"></a>直接进入某个路径下：<code>command</code> + <code>shift</code> + <code>G</code></h4><p>这个操作也可以在 <code>terminal</code> 中 <code>open 绝对路径</code> 来实现。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Unix/LinuxOrMacOS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/AC-everyday/leetcode-everyday/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AC-everyday/leetcode-everyday/" class="post-title-link" itemprop="url">leetcode刷题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-10 22:13:59" itemprop="dateCreated datePublished" datetime="2019-06-10T22:13:59+08:00">2019-06-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/AC-everyday/leetcode-everyday/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode刷题" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://leetcode.com/">LeetCode</a>难度三个等级：</p>
+<p><a style="color:black">1，简单：</a><strong style="background:#5cb85c;color:white;border-radius:10px;padding:1px 3px">Easy</strong></p>
+<p><a style="color:black">1，中等：</a><strong style="background:#f0ad4e;color:white;border-radius:10px;padding:1px 3px">Medium</strong></p>
+<p><a style="color:black">3，困难：</a><strong style="background:#d9534f;color:white;border-radius:10px;padding:1px 3px">Hard</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AC-everyday/leetcode-everyday/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Sophomore/Computer-Graphics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Sophomore/Computer-Graphics/" class="post-title-link" itemprop="url">计算机图形学</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-04 18:52:47" itemprop="dateCreated datePublished" datetime="2019-06-04T18:52:47+08:00">2019-06-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机图形学</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Sophomore/Computer-Graphics/" class="post-meta-item leancloud_visitors" data-flag-title="计算机图形学" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="opengl初探"><a href="#opengl初探" class="headerlink" title="opengl初探"></a>opengl初探</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Sophomore/Computer-Graphics/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Sophomore/data-structure-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Sophomore/data-structure-tree/" class="post-title-link" itemprop="url">数据结构-树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-03 23:46:53" itemprop="dateCreated datePublished" datetime="2019-06-03T23:46:53+08:00">2019-06-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%A7%E4%BA%8C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">大二-数据结构</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Sophomore/data-structure-tree/" class="post-meta-item leancloud_visitors" data-flag-title="数据结构-树" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="关于树的算法及其复杂度和适用场景分析"><a href="#关于树的算法及其复杂度和适用场景分析" class="headerlink" title="关于树的算法及其复杂度和适用场景分析"></a>关于树的算法及其复杂度和适用场景分析</h2><h3 id="HuffmanTree-哈夫曼树"><a href="#HuffmanTree-哈夫曼树" class="headerlink" title="$HuffmanTree$(哈夫曼树)"></a>$HuffmanTree$(哈夫曼树)</h3><p>小知识点</p>
+<ol>
+<li>因为哈夫曼树除了叶子结点外，其他节点都是两个结点合并构成的，所以不存在度为1的结点。</li>
+<li>因为$n_{sum}=n_0+n_1+n_2$，并且$n_1=0$。</li>
+<li>且总的分支数加根结点就是总的结点个数，所以$n_{sum}=2n_2+1$。</li>
+<li>综上可得$n_{sum}=2n_0-1$。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Sophomore/data-structure-tree/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Sophomore/data-structure-graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Sophomore/data-structure-graph/" class="post-title-link" itemprop="url">数据结构-图</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-03 22:29:03" itemprop="dateCreated datePublished" datetime="2019-06-03T22:29:03+08:00">2019-06-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%A7%E4%BA%8C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">大二-数据结构</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Sophomore/data-structure-graph/" class="post-meta-item leancloud_visitors" data-flag-title="数据结构-图" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="关于图的算法及其复杂度和适用场景分析"><a href="#关于图的算法及其复杂度和适用场景分析" class="headerlink" title="关于图的算法及其复杂度和适用场景分析"></a>关于图的算法及其复杂度和适用场景分析</h2><h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><h4 id="prim-算法-普里姆算法"><a href="#prim-算法-普里姆算法" class="headerlink" title="$prim$算法(普里姆算法)"></a>$prim$算法(普里姆算法)</h4><ul>
+<li>时间复杂度$O(N^2)$</li>
+<li>适用场景：<code>稠密图</code></li>
+<li>又叫<code>加点法</code></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Sophomore/data-structure-graph/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/AC-everyday/euler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AC-everyday/euler/" class="post-title-link" itemprop="url">欧拉函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-05-29 23:42:17" itemprop="dateCreated datePublished" datetime="2019-05-29T23:42:17+08:00">2019-05-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM-%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">ACM-数学</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/AC-everyday/euler/" class="post-meta-item leancloud_visitors" data-flag-title="欧拉函数" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><img data-src="/images/acm/2019/euler.png" alt="euler">
+
+<p>在数论中，对正整数$n$，欧拉函数$\phi(n)$是小于或等于$n$的正整数中与$n$互质的数的数目。</p>
+<p>求单个数的欧拉函数值时间复杂度可以为$Olog_2n$，代码如下:</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AC-everyday/euler/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/createBlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/createBlog/" class="post-title-link" itemprop="url">搭建Hexo博客</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-05-29 23:28:38" itemprop="dateCreated datePublished" datetime="2019-05-29T23:28:38+08:00">2019-05-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/createBlog/" class="post-meta-item leancloud_visitors" data-flag-title="搭建Hexo博客" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>搭建博客</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/createBlog/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pyai</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"5pVk0EYlzYYPAsFwH0CyoRy3-gzGzoHsz","app_key":"JH96EvkvO6Q5slVncPrGo7NG","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>

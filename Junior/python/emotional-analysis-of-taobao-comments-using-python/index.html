@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pyai.top","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"./public/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="简介针对单个商品爬取所有用户评论，然后对评论信息进行数据清洗，最后使用百度的深度学习中文情感分析工具Senta进行情感分析，使得所有的好评、差评、好评率、好评与差评使用比例饼图展现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用python对淘宝评论进行情感分析并绘制词云">
+<meta property="og:url" content="https://pyai.top/Junior/python/emotional-analysis-of-taobao-comments-using-python/index.html">
+<meta property="og:site_name" content="pyai&#39;s blog">
+<meta property="og:description" content="简介针对单个商品爬取所有用户评论，然后对评论信息进行数据清洗，最后使用百度的深度学习中文情感分析工具Senta进行情感分析，使得所有的好评、差评、好评率、好评与差评使用比例饼图展现。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/chromedriver.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/target.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/original_data.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/snownlp.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/senta_bilstm.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/analysis_0.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/analysis_1.jpg">
+<meta property="og:image" content="https://pyai.top/images/junior/python/pachong_taobao/wordcloud.jpg">
+<meta property="article:published_time" content="2019-11-22T11:47:08.000Z">
+<meta property="article:modified_time" content="2020-09-04T04:15:46.406Z">
+<meta property="article:author" content="pyai">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pyai.top/images/junior/python/pachong_taobao/chromedriver.jpg">
+
+
+<link rel="canonical" href="https://pyai.top/Junior/python/emotional-analysis-of-taobao-comments-using-python/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>使用python对淘宝评论进行情感分析并绘制词云 | pyai's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">pyai's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-腾讯兔小巢">
+
+    <a href="https://support.qq.com/products/109158" rel="noopener" target="_blank"><i class="fa fa-comment fa-fw"></i>腾讯兔小巢</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">爬取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%85%E6%B4%97%E6%95%B0%E6%8D%AE"><span class="nav-number">3.</span> <span class="nav-text">清洗数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">情感分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E8%AF%8D%E4%BA%91"><span class="nav-number">5.</span> <span class="nav-text">绘制词云</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pyai</p>
+  <div class="site-description" itemprop="description">记录生活的点点滴滴!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://t.me/wopyai" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;wopyai" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://m.do.co/c/6d9bcba26196" title="https:&#x2F;&#x2F;m.do.co&#x2F;c&#x2F;6d9bcba26196" rel="noopener" target="_blank">DO服务器</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zhangzef.com/" title="https:&#x2F;&#x2F;zhangzef.com&#x2F;" rel="noopener" target="_blank">张泽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cnguu.cn/" title="https:&#x2F;&#x2F;blog.cnguu.cn&#x2F;" rel="noopener" target="_blank">vuepress-theme-yur作者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://is.boxmoe.cn/" title="https:&#x2F;&#x2F;is.boxmoe.cn&#x2F;" rel="noopener" target="_blank">霓红的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.cugxuan.cn/" title="https:&#x2F;&#x2F;blog.cugxuan.cn&#x2F;" rel="noopener" target="_blank">泫</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Junior/python/emotional-analysis-of-taobao-comments-using-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用python对淘宝评论进行情感分析并绘制词云
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-11-22 19:47:08" itemprop="dateCreated datePublished" datetime="2019-11-22T19:47:08+08:00">2019-11-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+      </span>
+
+  
+    <span id="/Junior/python/emotional-analysis-of-taobao-comments-using-python/" class="post-meta-item leancloud_visitors" data-flag-title="使用python对淘宝评论进行情感分析并绘制词云" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>针对单个商品爬取所有用户评论，然后对评论信息进行数据清洗，最后使用百度的深度学习中文情感分析工具<code>Senta</code>进行情感分析，使得所有的好评、差评、好评率、好评与差评使用比例饼图展现。</p>
+<a id="more"></a>
+
+<h4 id="爬取数据"><a href="#爬取数据" class="headerlink" title="爬取数据"></a>爬取数据</h4><p>因为要使用<code>selenium</code>操纵<code>Google Chrome</code>浏览器，所以要将<code>chromedriver</code>放到<code>usr/local/bin</code>目录下。</p>
+<img data-src="/images/junior/python/pachong_taobao/chromedriver.jpg" width="80%">
+
+<p>我选择的商品是 <code>三只松鼠_香酥小黄鱼96g</code> 。</p>
+<p><img data-src="/images/junior/python/pachong_taobao/target.jpg" alt="target"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取评论</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># chromeDriver 在 /usr/local/bin</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 三只松鼠_香酥小黄鱼96g商品链接</span></span><br><span class="line">url=<span class="string">&#x27;https://detail.tmall.com/item.htm?spm=a230r.1.14.6.4c207c75wjrvsJ&amp;id=551835141835&amp;cm_id=140105335569ed55e27b&amp;abbucket=9&amp;skuId=4069566081270&#x27;</span></span><br><span class="line">driver.get(url)</span><br><span class="line">driver.maximize_window()</span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line">driver.execute_script(<span class="string">&quot;window.scrollBy(0, 768)&quot;</span>,<span class="string">&quot;&quot;</span>) <span class="comment"># 页面向下滚动768px</span></span><br><span class="line"><span class="comment"># 在点击之前多sleep一会，考虑网速原因，如果在按钮未加载出来之前click程序就会报错终止。</span></span><br><span class="line">sleep(<span class="number">5</span>)</span><br><span class="line">comments_li = driver.find_element_by_id(<span class="string">&#x27;J_TabBar&#x27;</span>).find_elements_by_tag_name(<span class="string">&#x27;li&#x27;</span>)[<span class="number">1</span>].click() <span class="comment"># 找到评论按钮所在的li标签</span></span><br><span class="line">sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">&#x27;original_data&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>,newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> opf:</span><br><span class="line">    writer = csv.writer(opf)</span><br><span class="line">    title=[<span class="string">&#x27;user_id&#x27;</span>,<span class="string">&#x27;comments&#x27;</span>]</span><br><span class="line">    writer.writerow(title)</span><br><span class="line">    count = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 天猫只能显示99页的评论</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">        <span class="comment"># 防止被轻易检测出是爬虫，每次睡眠时间都不一样</span></span><br><span class="line">        sleep(<span class="number">2</span> + random.random())</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):  <span class="comment"># 网页下拉三次，确保数据加载完成</span></span><br><span class="line">            driver.execute_script(<span class="string">&quot;window.scrollBy(0, 800)&quot;</span>, <span class="string">&quot;&quot;</span>)  <span class="comment"># 页面向下滚动800px</span></span><br><span class="line">            sleep(<span class="number">1</span> + random.random())</span><br><span class="line">        sleep(random.choice([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]) + random.random())</span><br><span class="line">        parent_div = driver.find_element_by_id(<span class="string">&#x27;J_Reviews&#x27;</span>).find_element_by_class_name(<span class="string">&#x27;rate-grid&#x27;</span>)</span><br><span class="line">        all_trs = parent_div.find_elements_by_tag_name(<span class="string">&#x27;tr&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> tr <span class="keyword">in</span> all_trs:</span><br><span class="line">            data = []</span><br><span class="line">            data.append(<span class="string">&quot;user_%d&quot;</span> % count)</span><br><span class="line">            comments=<span class="string">&#x27; &#x27;</span></span><br><span class="line">            all_comments = tr.find_elements_by_class_name(<span class="string">&#x27;tm-rate-fulltxt&#x27;</span>)</span><br><span class="line">            <span class="keyword">for</span> i, comment <span class="keyword">in</span> enumerate(all_comments):</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">                    comments = comments + comment.text.strip()</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    comments = comments + <span class="string">&#x27;\n        追加评论: &#x27;</span> + comment.text.strip()</span><br><span class="line">            data.append(comments)</span><br><span class="line">            writer.writerow(data)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        driver.find_element_by_class_name(<span class="string">&#x27;rate-paginator&#x27;</span>).find_elements_by_tag_name(<span class="string">&#x27;a&#x27;</span>)[<span class="number">-1</span>].click()</span><br><span class="line">        sleep(random.choice([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]) + random.random())</span><br><span class="line">        driver.delete_all_cookies()</span><br></pre></td></tr></table></figure>
+
+<p>为了不给淘宝系统添加负担，每操作一下都会<code>sleep</code>一会，确保爬取过程顺畅。爬取过程中如果遇见登录窗口，一定要及时关闭，防止爬虫中断。</p>
+<p>因为淘宝只显示<code>99</code>页评论，所以对于单个商品只爬到了<code>2000</code>条评论。</p>
+<p><img data-src="/images/junior/python/pachong_taobao/original_data.jpg" alt="original_data"></p>
+<h4 id="清洗数据"><a href="#清洗数据" class="headerlink" title="清洗数据"></a>清洗数据</h4><p>很容易就可以发现上述数据有很多是没有用处的，并且妨碍情感分析的。比如 <code>追加评论：</code> 和 <code>此用户没有填写评论!</code> ，这些明显没用的要删掉。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将爬到的评论进行清洗</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;original_data.csv&#x27;</span>, names=[<span class="string">&#x27;user_id&#x27;</span>, <span class="string">&#x27;content&#x27;</span>], header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 去重</span></span><br><span class="line">cnt = df.duplicated().value_counts()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除店家的回复，店家回复的格式: &quot;解释:...&quot;</span></span><br><span class="line">comment_split = df[<span class="string">&#x27;content&#x27;</span>].str.split(<span class="string">&#x27;解释&#x27;</span>).apply(pd.Series)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只取第一列作为有效数据</span></span><br><span class="line">df[<span class="string">&#x27;content&#x27;</span>] = comment_split[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">df[<span class="string">&#x27;content&#x27;</span>] = df[<span class="string">&#x27;content&#x27;</span>].str.replace(<span class="string">&#x27;追加评论：&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;content&#x27;</span>] = df[<span class="string">&#x27;content&#x27;</span>].str.replace(<span class="string">&#x27;此用户没有填写评论!&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># df.info()</span></span><br><span class="line">df.to_csv(<span class="string">&#x27;new_data.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># from snownlp import SnowNLP</span></span><br><span class="line"><span class="comment"># comments = df.iloc[:, 1]</span></span><br><span class="line"><span class="comment"># comments = comments[comments.apply(len)&gt;=10]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># good_counter = 0 # 好评数</span></span><br><span class="line"><span class="comment"># just_so_so_counter = 0 # 中评</span></span><br><span class="line"><span class="comment"># bad_counter = 0 #差评数</span></span><br><span class="line"><span class="comment"># sum = 0 # 总评分</span></span><br><span class="line"><span class="comment"># cnt = 0</span></span><br><span class="line"><span class="comment"># for item in comments:</span></span><br><span class="line"><span class="comment">#     sentiment = SnowNLP(str(item)).sentiments</span></span><br><span class="line"><span class="comment">#     sum += sentiment</span></span><br><span class="line"><span class="comment">#     if sentiment &gt; 0.8:</span></span><br><span class="line"><span class="comment">#         good_counter += 1</span></span><br><span class="line"><span class="comment">#     elif sentiment &gt; 0.4:</span></span><br><span class="line"><span class="comment">#         just_so_so_counter += 1</span></span><br><span class="line"><span class="comment">#     else:</span></span><br><span class="line"><span class="comment">#         bad_counter += 1</span></span><br><span class="line"><span class="comment">#     print(&quot;%d %f %s&quot; % (cnt, sentiment, item))</span></span><br><span class="line"><span class="comment">#     cnt += 1</span></span><br><span class="line"><span class="comment"># print(&quot;good: %d, just_so_so: %d, bad: %d, average : %f&quot;</span></span><br><span class="line"><span class="comment">#       %(good_counter, just_so_so_counter, bad_counter, sum/len(comments)))</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="情感分析"><a href="#情感分析" class="headerlink" title="情感分析"></a>情感分析</h4><p>刚开始纠结用哪个框架来分析，在比较了<code>SnowNLP</code>和<code>senta_bilstm</code>之后<code>senta_bilstm</code>完胜，毕竟是百度的。</p>
+<p>比如下面这句话，明明是好评，使用<code>SnowNLP</code>分析成了差评（越接近<code>1</code>越积极，越接近<code>0</code>越消极）。</p>
+<p><img data-src="/images/junior/python/pachong_taobao/snownlp.jpg" alt="snownlp"></p>
+<p>再看<code>paddelhub</code>的<code>senta_bilstm</code>的效果。</p>
+<img data-src="/images/junior/python/pachong_taobao/senta_bilstm.jpg" width="80%">
+
+<p>上面才是正确的情感分析应该显示出来的，百度完胜！</p>
+<p>下面开始正式使用<code>senta_bilstm</code>进行情感分析。</p>
+<p><img data-src="/images/junior/python/pachong_taobao/analysis_0.jpg" alt="analysis_0"></p>
+<p>我对差评比较感兴趣，所以单独把差评打印出来了一份。</p>
+<p><img data-src="/images/junior/python/pachong_taobao/analysis_1.jpg" alt="analysis_1"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paddlehub <span class="keyword">as</span> hub</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> six</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.font_manager <span class="keyword">as</span> fm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;Arial Unicode MS&#x27;</span>] <span class="comment"># 更换字体</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span> <span class="comment"># 用来正常显示负号</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">senta = hub.Module(name=<span class="string">&quot;senta_bilstm&quot;</span>)</span><br><span class="line"></span><br><span class="line">text = []</span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;new_data.csv&#x27;</span>)</span><br><span class="line">pos = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(df)):</span><br><span class="line">    text.append(df.loc[i, <span class="string">&#x27;content&#x27;</span>])</span><br><span class="line">dict = &#123;<span class="string">&quot;content&quot;</span>: text&#125;</span><br><span class="line"></span><br><span class="line">input_dict = &#123;<span class="string">&quot;text&quot;</span>: text&#125;</span><br><span class="line"></span><br><span class="line">results = senta.sentiment_classify(data=input_dict)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, text <span class="keyword">in</span> enumerate(text):</span><br><span class="line">    results[index][<span class="string">&quot;text&quot;</span>] = text</span><br><span class="line"></span><br><span class="line">good = <span class="number">0</span></span><br><span class="line">bad = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> index, result <span class="keyword">in</span> enumerate(results):</span><br><span class="line">    <span class="keyword">if</span> six.PY2:</span><br><span class="line">        print(json.dumps(results[index], encoding=<span class="string">&quot;utf8&quot;</span>, ensure_ascii=<span class="literal">False</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        tag = results[index][<span class="string">&#x27;sentiment_key&#x27;</span>]</span><br><span class="line">        <span class="comment"># print(&quot;\033[42m %s \033[0m&quot; % results[index][&#x27;sentiment_key&#x27;])</span></span><br><span class="line">        <span class="keyword">if</span> tag == <span class="string">&#x27;positive&#x27;</span>:</span><br><span class="line">            print(<span class="string">&quot;%4d \033[41m 好评 \033[0m &quot;</span> % index, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            good += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">&quot;%4d \033[43m 差评 \033[0m &quot;</span> % index, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            bad += <span class="number">1</span></span><br><span class="line">        print(<span class="string">&quot;\033[42m %f \033[0m %s&quot;</span> %(results[index][<span class="string">&#x27;positive_probs&#x27;</span>], results[index][<span class="string">&#x27;text&#x27;</span>]))</span><br><span class="line">print(<span class="string">&quot;好评: %d, 差评: %d 好评率: %.2f%s&quot;</span> % (good, bad, <span class="number">100</span> * good/(good + bad), <span class="string">&quot;%&quot;</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&#x27;好评差评比例饼图&#x27;</span>, fontsize=<span class="number">24</span>)</span><br><span class="line">label = [<span class="string">&#x27;好评&#x27;</span>, <span class="string">&#x27;差评&#x27;</span>]</span><br><span class="line">explode = [<span class="number">0.01</span>, <span class="number">0.01</span>]</span><br><span class="line">patches, texts, autotexts = plt.pie([good, bad], explode=explode, labels=label, autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>)</span><br><span class="line">proptease = fm.FontProperties()</span><br><span class="line">proptease.set_size(<span class="number">20</span>)</span><br><span class="line">plt.setp(autotexts, fontproperties=proptease)</span><br><span class="line">plt.setp(texts, fontproperties=proptease)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="绘制词云"><a href="#绘制词云" class="headerlink" title="绘制词云"></a>绘制词云</h4><p>使用的<code>WordCloud</code>绘制词云，背景随便找一个图片就行。</p>
+<img data-src="/images/junior/python/pachong_taobao/wordcloud.jpg" width="80%">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line">mpl.use(<span class="string">&quot;TkAgg&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, STOPWORDS, ImageColorGenerator</span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = <span class="string">&#x27;&#x27;</span></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;new_data.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(df)):</span><br><span class="line">    text += df.loc[i, <span class="string">&#x27;content&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># read the mask / color image taken from # http://jirkavinse.deviantart.com/art/quot-Real-Life-quot-Alice-282261010</span></span><br><span class="line">Adele_coloring = np.array(Image.open(<span class="string">&quot;head.png&quot;</span>))</span><br><span class="line">stopwords = set(STOPWORDS)</span><br><span class="line">stopwords.add(<span class="string">&quot;said&quot;</span>)</span><br><span class="line"></span><br><span class="line">font = <span class="string">&#x27;/Library/Fonts/Arial Unicode.ttf&#x27;</span></span><br><span class="line"></span><br><span class="line">wc = WordCloud(font_path=font,</span><br><span class="line">                          width=<span class="number">1200</span>,</span><br><span class="line">                          height=<span class="number">1200</span>,</span><br><span class="line">                          mask=Adele_coloring).generate(text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create coloring from image</span></span><br><span class="line">image_colors = ImageColorGenerator(Adele_coloring)</span><br><span class="line"></span><br><span class="line"><span class="comment"># show</span></span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)</span><br><span class="line">plt.imshow(wc.recolor(color_func=image_colors), interpolation=<span class="string">&quot;bilinear&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line">wc.to_file(<span class="string">&#x27;show_English.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a target="_blank" href="https://blog.csdn.net/weixin_42219368/article/details/80840151?utm_source=app" rel="external nofollow noreferrer noopener">热销商品评论之情感分析案例 - 基于LDA、贝叶斯模型算法实现</a></li>
+<li><a target="_blank" href="https://lovelybuggies.github.io/2019/01/19/word_cloud%E4%B8%AD%E6%96%87%E8%AF%8D%E4%BA%91/" rel="external nofollow noreferrer noopener">word_cloud 中文词云</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Junior/python/install-anaconda-and-jupyter/" rel="prev" title="在服务器搭建jupyter notebook">
+                  <i class="fa fa-chevron-left"></i> 在服务器搭建jupyter notebook
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/AC-everyday/leetcode/leetcode-4-median-of-two-sorted-arrays/" rel="next" title="LeetCode 4.寻找两个有序数组的中位数">
+                  LeetCode 4.寻找两个有序数组的中位数 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pyai</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.15.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"5pVk0EYlzYYPAsFwH0CyoRy3-gzGzoHsz","app_key":"JH96EvkvO6Q5slVncPrGo7NG","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://pyai.top/Junior/python/emotional-analysis-of-taobao-comments-using-python/',]
+      });
+      });
+  </script>
+
+    </div>
+</body>
+</html>
