@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pyai.top/AC-everyday/leetcode/leetcode-51-N-Queens/</loc>
+    
+    <lastmod>2020-09-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pyai.top/postgraduate-countdown-telegram-bot/</loc>
     
     <lastmod>2020-09-04</lastmod>
@@ -101,13 +108,6 @@
   
   <url>
     <loc>https://pyai.top/AC-everyday/leetcode/leetcode-4-median-of-two-sorted-arrays/</loc>
-    
-    <lastmod>2020-09-04</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pyai.top/AC-everyday/leetcode/leetcode-51-N-Queens/</loc>
     
     <lastmod>2020-09-04</lastmod>
     
