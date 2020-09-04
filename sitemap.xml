@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pyai.top/postgraduate-countdown-telegram-bot/</loc>
+    
+    <lastmod>2020-09-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pyai.top/Computing-geometry-jls/CGL-2-C-Cross-Point/</loc>
     
     <lastmod>2020-09-04</lastmod>
@@ -401,13 +408,6 @@
   </url>
   
   <url>
-    <loc>https://pyai.top/postgraduate-countdown-telegram-bot/</loc>
-    
-    <lastmod>2020-09-04</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://pyai.top/software/BaiduNetdisk-PK-ENFI/</loc>
     
     <lastmod>2020-09-04</lastmod>
@@ -754,6 +754,13 @@
   
   <url>
     <loc>https://pyai.top/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/</loc>
+    <lastmod>2020-09-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pyai.top/tags/python-telegram-bot/</loc>
     <lastmod>2020-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
