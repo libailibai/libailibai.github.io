@@ -30,7 +30,7 @@
 <meta property="og:description" content="问题描述:用 $2$ 台处理机 $A$ 和 $B$ 处理 $n$ 个作业。设第 $i$ 个作业交给机器 $A$ 处理时需要时间 $a_i$ ，若 由机器 $B$ 来处理，则需要时间 bi 。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-10-31T11:58:21.000Z">
-<meta property="article:modified_time" content="2020-09-04T04:15:46.406Z">
+<meta property="article:modified_time" content="2020-09-04T05:40:33.869Z">
 <meta property="article:author" content="pyai">
 <meta property="article:tag" content="计算机算法设计与分析">
 <meta property="article:tag" content="动态规划">
@@ -339,7 +339,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
+        <time title="Modified: 2020-09-04 13:40:33" itemprop="dateModified" datetime="2020-09-04T13:40:33+08:00">2020-09-04</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -384,7 +384,9 @@
 
 <p>接下来就只能推状态转移方程了。</p>
 <p>设 $dp[i][j]$ 表示前 $i$ 个作业 $A$ 机器用了 $j$ 时间的条件下 $B$ 机器最少花费的时间。<br>首先设 $sum=\sum_{i=1}^{n}{a_i}$ ，然后令 $j\in[1,sum]$ 。</p>
-<p>则：<br>$$<br>dp[i][j]=min(dp[i-1][j-a[i]],dp[i-1][j]+b[i])<br>$$<br>解释一下上面两个状态：</p>
+<p>则：</p>
+<p>$$<br>dp[i][j]=min(dp[i-1][j-a[i]],dp[i-1][j]+b[i])<br>$$</p>
+<p>解释一下上面两个状态：</p>
 <ul>
 <li>$dp[i-1][j-a[i]]$ : 第 $i$ 个任务交给 $A$ 机器，所以前 $i-1$ 个任务 $A$ 机器花费 $j-a[i]$ 。</li>
 <li>$dp[i-1][j]+b[i]$ : 第 $i$ 个任务交给 $B$ 机器，所以前 $i-1$ 个任务 $A$ 机器花费的时间就是 $j$ 。</li>
