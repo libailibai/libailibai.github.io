@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>在centos7安装python3环境</title>
+      <link href="//Unix/install-python3-on-centos7/"/>
+      <url>//Unix/install-python3-on-centos7/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget源码</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压tar.xz</span></span><br><span class="line">tar -xvJf  Python-3.8.0.tar.xz</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span>进入解压后的目录</span></span><br><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装一些编译需要的依赖</span></span><br><span class="line">yum -y groupinstall &quot;Development Tools&quot;</span><br><span class="line">yum -y install zlib*</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译安装，prefix后跟的目录是你的安装目录</span></span><br><span class="line">./configure prefix=/usr/local/python3</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置软链接</span></span><br><span class="line">rm /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> OS </tag>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>试题 历届试题 剪格子</title>
       <link href="//AC-everyday/lanqiao/prev/prev-4/"/>
       <url>//AC-everyday/lanqiao/prev/prev-4/</url>
