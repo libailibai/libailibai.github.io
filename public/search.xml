@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>install-mysql-on-centos7</title>
+      <link href="//Unix/install-mysql-on-centos7/"/>
+      <url>//Unix/install-mysql-on-centos7/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载mysql安装源</span></span><br><span class="line">wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql安装源</span></span><br><span class="line">yum -y localinstall mysql57-community-release-el7-11.noarch.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在线安装 mysql，下载的东西有点多，需要等待一会儿</span></span><br><span class="line">yum -y install mysql-community-server</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动mysql</span></span><br><span class="line">systemctl start mysqld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开启启动</span></span><br><span class="line">systemctl enable mysqld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新加载配置文件</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看初始密码</span></span><br><span class="line">cat /var/log/mysqld.log | grep password</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改root登陆密码</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter password: 初始密码</span></span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;Password123!&#x27;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> OS </tag>
+            
+            <tag> centos </tag>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在centos7安装python3环境</title>
       <link href="//Unix/install-python3-on-centos7/"/>
       <url>//Unix/install-python3-on-centos7/</url>

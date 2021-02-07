@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pyai.top/Unix/install-mysql-on-centos7/</loc>
+    
+    <lastmod>2021-02-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pyai.top/Unix/install-python3-on-centos7/</loc>
     
     <lastmod>2021-02-07</lastmod>
@@ -733,6 +740,13 @@
   
   <url>
     <loc>https://pyai.top/tags/centos/</loc>
+    <lastmod>2021-02-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pyai.top/tags/mysql/</loc>
     <lastmod>2021-02-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

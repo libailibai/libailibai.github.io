@@ -219,7 +219,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -232,7 +232,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -290,6 +290,77 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://pyai.top/Unix/install-mysql-on-centos7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pyai">
+      <meta itemprop="description" content="记录生活的点点滴滴!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pyai's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Unix/install-mysql-on-centos7/" class="post-title-link" itemprop="url">install-mysql-on-centos7</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-02-07 14:59:12 / Modified: 15:01:04" itemprop="dateCreated datePublished" datetime="2021-02-07T14:59:12+08:00">2021-02-07</time>
+    </span>
+
+  
+    <span id="/Unix/install-mysql-on-centos7/" class="post-meta-item leancloud_visitors" data-flag-title="install-mysql-on-centos7" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载mysql安装源</span></span><br><span class="line">wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql安装源</span></span><br><span class="line">yum -y localinstall mysql57-community-release-el7-11.noarch.rpm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在线安装 mysql，下载的东西有点多，需要等待一会儿</span></span><br><span class="line">yum -y install mysql-community-server</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动mysql</span></span><br><span class="line">systemctl start mysqld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开启启动</span></span><br><span class="line">systemctl enable mysqld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新加载配置文件</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看初始密码</span></span><br><span class="line">cat /var/log/mysqld.log | grep password</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改root登陆密码</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter password: 初始密码</span></span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;Password123!&#x27;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1087,90 +1158,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/AC-everyday/leetcode/leetcode-4-median-of-two-sorted-arrays/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://pyai.top/Junior/python/emotional-analysis-of-taobao-comments-using-python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="pyai">
-      <meta itemprop="description" content="记录生活的点点滴滴!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pyai's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Junior/python/emotional-analysis-of-taobao-comments-using-python/" class="post-title-link" itemprop="url">使用python对淘宝评论进行情感分析并绘制词云</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2019-11-22 19:47:08" itemprop="dateCreated datePublished" datetime="2019-11-22T19:47:08+08:00">2019-11-22</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-09-04 12:15:46" itemprop="dateModified" datetime="2020-09-04T12:15:46+08:00">2020-09-04</time>
-      </span>
-
-  
-    <span id="/Junior/python/emotional-analysis-of-taobao-comments-using-python/" class="post-meta-item leancloud_visitors" data-flag-title="使用python对淘宝评论进行情感分析并绘制词云" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>针对单个商品爬取所有用户评论，然后对评论信息进行数据清洗，最后使用百度的深度学习中文情感分析工具<code>Senta</code>进行情感分析，使得所有的好评、差评、好评率、好评与差评使用比例饼图展现。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Junior/python/emotional-analysis-of-taobao-comments-using-python/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
